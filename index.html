@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J-USE PDF Re-Render Tool</title>
+  <meta name="description" content="Internal tool to regenerate camera-ready J-USE REOI 2026 PDFs from raw form data (Sheet JSON or PocketBase export). No backend writes — fully isolated from the production submission counter." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1a1a1a; background: #f5f9f7; margin: 0; line-height: 1.55; }
+
+    .topnav { background: #1a4a2e; color: white; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .topnav h1 { font-family: Georgia, serif; margin: 0; font-size: 1.2rem; }
+    .topnav .badge { background: rgba(255,255,255,0.18); padding: 4px 12px; border-radius: 16px; font-size: 0.78rem; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    .container { max-width: 980px; margin: 28px auto; padding: 0 24px 48px; }
+
+    .info {
+      background: #fff8e1;
+      border-left: 4px solid #f0ad4e;
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+      font-size: 0.92rem;
+    }
+    .info strong { color: #b56500; }
+
+    .panel {
+      background: white;
+      border-radius: 10px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid #e8efe9;
+      margin-bottom: 22px;
+    }
+    .panel h2 { font-family: Georgia, serif; color: #1a4a2e; margin: 0 0 6px; font-size: 1.15rem; }
+    .panel p.lead { margin: 0 0 14px; color: #666; font-size: 0.92rem; }
+
+    textarea#jsonInput {
+      width: 100%;
+      min-height: 240px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      padding: 14px;
+      border: 2px solid #e8efe9;
+      border-radius: 8px;
+      resize: vertical;
+    }
+    textarea#jsonInput:focus { outline: 0; border-color: #2E8B57; }
+
+    .drop-zone {
+      border: 2px dashed #c5dfc8;
+      border-radius: 8px;
+      padding: 22px;
+      text-align: center;
+      color: #666;
+      margin-top: 12px;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .drop-zone.drag-over { border-color: #2E8B57; background: #e8f5e9; color: #1a4a2e; }
+    .drop-zone input[type="file"] { display: none; }
+
+    .actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 0;
+      font-size: 14px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .btn-primary { background: linear-gradient(135deg, #2E8B57, #4169E1); color: white; }
+    .btn-secondary { background: #e8efe9; color: #1a4a2e; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    .status {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .status.ok { background: #e8f5e9; color: #1a4a2e; display: block; }
+    .status.err { background: #ffebee; color: #c62828; display: block; }
+    .status.info { background: #e3f2fd; color: #1565c0; display: block; }
+
+    details.preview { margin-top: 14px; }
+    details.preview summary { cursor: pointer; font-weight: 600; color: #2E8B57; padding: 6px 0; }
+    details.preview pre { background: #f5f9f7; padding: 12px; border-radius: 6px; font-size: 11px; overflow-x: auto; max-height: 240px; overflow-y: auto; margin: 8px 0 0; }
+
+    iframe#rendererFrame { width: 100%; height: 600px; border: 1px solid #e8efe9; border-radius: 8px; margin-top: 16px; display: none; background: white; }
+    iframe#rendererFrame.visible { display: block; }
+
+    .footer { color: #999; font-size: 0.78rem; text-align: center; padding: 24px 16px; }
+    code { background: #f5f9f7; padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <h1>J-USE PDF Re-Render Tool</h1>
+    <span class="badge">Internal · Read-only</span>
+  </nav>
+
+  <div class="container">
+
+    <div class="info">
+      <strong>What this is:</strong> a stand-alone tool to regenerate the camera-ready J-USE REOI 2026 PDF from raw form data — useful for re-rendering historical submissions after a renderer fix, or for archival. <strong>It does not call any backend, does not increment the production counter, does not touch the Sheet, and does not send emails.</strong> Everything runs locally in your browser; you save the PDF wherever you want it.
+    </div>
+
+    <!-- Step 1: paste / drop JSON -->
+    <div class="panel">
+      <h2>1. Provide the application data</h2>
+      <p class="lead">Paste the JSON from the Sheet's <code>Full Form Data (JSON)</code> column, or drop a <code>.json</code> file (Sheet export or PocketBase record).</p>
+
+      <textarea id="jsonInput" placeholder='Paste JSON here, e.g.:&#10;{&#10;  "orgName": "Caribbean Eco-Resorts Ltd.",&#10;  "pathway": "hybrid",&#10;  "genderConsiderations": ["women_led", "gender_analysis"],&#10;  ...&#10;}'></textarea>
+
+      <label class="drop-zone" for="fileInput" id="dropZone">
+        Drop a <code>.json</code> file here, or click to choose one
+        <input type="file" id="fileInput" accept=".json,application/json" />
+      </label>
+
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="renderBtn">▶ Render PDF</button>
+        <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
+        <span class="status" id="status"></span>
+      </div>
+
+      <details class="preview" id="enrichedPreview">
+        <summary>Show enriched data (after labelize transformation)</summary>
+        <pre id="enrichedDump"></pre>
+      </details>
+    </div>
+
+    <!-- Step 2: rendered iframe (auto-prints) -->
+    <iframe id="rendererFrame" src="about:blank" title="PDF preview"></iframe>
+
+  </div>
+
+  <p class="footer">No backend writes · Pure browser tool · Renderer + labelize logic snapshot taken from <code>j-use-eoi-form-</code> repo at build time.</p>
+
+  <script src="labelize.js"></script>
+  <script>
+    'use strict';
+
+    var els = {
+      input:    document.getElementById('jsonInput'),
+      file:     document.getElementById('fileInput'),
+      drop:     document.getElementById('dropZone'),
+      render:   document.getElementById('renderBtn'),
+      clear:    document.getElementById('clearBtn'),
+      status:   document.getElementById('status'),
+      preview:  document.getElementById('enrichedPreview'),
+      dump:     document.getElementById('enrichedDump'),
+      frame:    document.getElementById('rendererFrame')
+    };
+
+    function setStatus(msg, level) {
+      els.status.textContent = msg;
+      els.status.className = 'status ' + (level || 'info');
+    }
+
+    // --- Drag & drop ---
+    ['dragover', 'dragenter'].forEach(function (ev) {
+      els.drop.addEventListener(ev, function (e) { e.preventDefault(); els.drop.classList.add('drag-over'); });
+    });
+    ['dragleave', 'dragend', 'drop'].forEach(function (ev) {
+      els.drop.addEventListener(ev, function (e) { e.preventDefault(); els.drop.classList.remove('drag-over'); });
+    });
+    els.drop.addEventListener('drop', function (e) {
+      var f = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) loadFile(f);
+    });
+    els.file.addEventListener('change', function () {
+      if (els.file.files && els.file.files[0]) loadFile(els.file.files[0]);
+    });
+    function loadFile(file) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        els.input.value = reader.result;
+        setStatus('Loaded: ' + file.name + ' (' + Math.round(reader.result.length / 1024) + ' KB)', 'ok');
+      };
+      reader.readAsText(file);
+    }
+
+    els.clear.addEventListener('click', function () {
+      els.input.value = '';
+      els.file.value = '';
+      setStatus('', '');
+      els.frame.classList.remove('visible');
+      els.frame.src = 'about:blank';
+      els.preview.open = false;
+    });
+
+    // --- Render ---
+    els.render.addEventListener('click', function () {
+      var raw = els.input.value.trim();
+      if (!raw) { setStatus('Paste or drop application JSON first.', 'err'); return; }
+
+      var data;
+      try { data = JSON.parse(raw); }
+      catch (e) { setStatus('Invalid JSON: ' + e.message, 'err'); return; }
+
+      // Apply standalone labelize using the bundled labelDict
+      var enriched;
+      try { enriched = standaloneLabelize(data); }
+      catch (e) { setStatus('Labelize failed: ' + e.message, 'err'); return; }
+
+      els.dump.textContent = JSON.stringify(enriched, null, 2);
+      els.preview.open = true;
+
+      // Load the renderer in the iframe; once loaded, send 'render' then 'print'.
+      els.frame.classList.add('visible');
+      els.frame.onload = function () {
+        try {
+          els.frame.contentWindow.postMessage({ type: 'render', data: enriched }, '*');
+          setStatus('Populating renderer…', 'info');
+        } catch (e) {
+          setStatus('Failed to send data to renderer: ' + e.message, 'err');
+        }
+      };
+      els.frame.src = 'renderer.html?ts=' + Date.now();
+    });
+
+    // Listen for renderer acknowledgements so we can chain render → print.
+    window.addEventListener('message', function (event) {
+      if (!event.data) return;
+      if (event.data.type === 'rendered') {
+        if (event.data.error) {
+          setStatus('Render failed: ' + event.data.error, 'err');
+          return;
+        }
+        setStatus('Rendered. Opening print dialog — choose "Save as PDF".', 'ok');
+        // Trigger print after a short delay so the user sees the rendered preview first.
+        setTimeout(function () {
+          els.frame.contentWindow.postMessage({ type: 'print' }, '*');
+        }, 600);
+      } else if (event.data.type === 'printDone') {
+        if (event.data.error) {
+          setStatus('Print failed: ' + event.data.error + ' — try Cmd+P inside the preview frame.', 'err');
+        } else {
+          setStatus('PDF saved (or print dialog closed). Ready for the next one.', 'ok');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

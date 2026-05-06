@@ -1,0 +1,233 @@
+{
+  "ref_number": "JUSE-2026-TEST",
+  "_isTestSubmission": true,
+
+  "orgName": "Clarendon Youth Farmers Cooperative (TEST)",
+  "regType": "cooperative",
+  "regNumber": "COOP-2019-0142",
+  "regDate": "2019-03-15",
+  "dateOfFormation": "2019-03-15",
+  "orgCategory": "cooperative",
+  "bankAccount": "yes",
+  "orgAddress": "12 Manchester Road, May Pen, Clarendon, Jamaica",
+  "orgParish": "clarendon",
+  "website": "https://www.clarendonyouthfarmers.org.jm",
+  "socialMedia": "@cyf_coop on Instagram, fb.com/clarendonyouthfarmers",
+
+  "contactName": "Jane Doe",
+  "primaryContactName": "Jane Doe",
+  "contactTitle": "Executive Director",
+  "contactGender": "F",
+  "email": "",
+  "phone": "+1-876-555-0142",
+  "contactPhone": "+1-876-555-0142",
+  "contactEmail": "",
+
+  "projectTitle": "Hybrid Community Agroforestry & Market Garden — Clarendon Parish (TEST)",
+  "parish": "clarendon",
+  "location": "May Pen / Mocho corridor — 5 hectare community-owned plot adjacent to the Rio Minho watershed",
+  "classification": "peri-urban",
+
+  "hazards": ["drought", "flooding", "heat", "food_security"],
+  "climateChallenge": ["food_water", "heat", "flooding"],
+  "exposureDescription": "Clarendon is Jamaica's most drought-prone parish. Average rainfall has dropped 18% over the past decade, with the May–November season experiencing increasingly erratic patterns. The Rio Minho watershed — on which our 5-ha plot depends — has seen baseflow drops of 30% during dry spells, putting smallholder farms at severe risk.",
+  "vulnerabilityDescription": "Smallholder youth farmers in the May Pen/Mocho corridor are highly vulnerable: 78% rely on rain-fed agriculture as primary income, 64% report income loss of >40% during the 2023–2024 drought. The cooperative's 25 active member-farmers all have <2ha holdings and limited access to irrigation infrastructure.",
+  "adaptiveCapacity": "Moderate. The cooperative has 6 years of operating history, a registered bank account, and an active core of 25 trained farmers. Existing partnerships with RADA and HEART/NSTA give us access to extension services. However, capital for resilient infrastructure (irrigation, agroforestry establishment, post-harvest) is the binding constraint.",
+  "copingMechanisms": ["temporary", "borrowing", "mutual_aid", "existing_infrastructure"],
+  "copingDescription": "Current coping is reactive and inadequate: members rent diesel pumps during drought (high cost, polluting), share water from neighbours (causes conflict), harvest crops early (lower yields/prices), and seek off-farm wage labour (deprioritises the farm). Climate adaptation requires a shift from coping to systemic resilience.",
+  "systemFlows": ["food_supply", "water_management", "land_use", "social_equity", "livelihoods", "knowledge"],
+  "priorityNeeds": ["nbcs_design", "value_pathway", "stakeholder", "budgeting", "sustainability", "me_framework", "climate_dim"],
+  "summary": "A 12-month, JMD $8.35M hybrid agroforestry and market-garden project on a 5-ha community plot in Clarendon, training 25 youth farmers in climate-smart practices while establishing 2,500 native fruit and timber trees, drip irrigation on the full 5 ha, and a solar-powered post-harvest processing facility. Outputs go to local schools (public good) and a Kingston farm-to-table market chain (revenue), making the operation financially self-sustaining within 24 months.",
+
+  "systemTransformation": "From extractive monoculture rain-fed farming → integrated agroforestry where trees, food crops, soil, and water work as one system. Income-side: from single-channel cash crops at the gate → diversified streams (school supply contracts, market sales, value-added products). Social: from individual smallholder vulnerability → cooperative resilience with shared infrastructure and risk pooling.",
+
+  "housingVulnerability": "partial",
+  "housingVulnerabilityContext": "Project location (5 ha plot) is not directly addressing housing vulnerability, but 64% of beneficiary farmers live in informal settlements within 3 km of the plot where flood risk is high. Income stabilisation from this project supports their ability to invest in safer housing and reduces forced migration.",
+  "housingContextDesc": "64% of beneficiary farmers reside in informal settlements within 3 km of the project plot. Flooding during the rainy season is recurrent. Income stability from agroforestry sales supports household investment in safer housing infrastructure.",
+
+  "logicBiophysical": "Native fruit/timber trees (mango, ackee, breadfruit, mahogany) at 5 m × 5 m spacing on contour lines reduce surface runoff by ~40%, build soil organic matter, sequester ~12 tCO2e/ha/year, and create year-round canopy that drops ground temperatures by 3–5 °C. Drip irrigation paired with mulched beds cuts water use by 60% versus furrow.",
+  "logicBeneficiaries": "25 youth farmers gain stable income from diversified agroforestry. 100+ secondary beneficiaries via training cascades. 8 local schools receive consistent fresh produce supply. Community-wide: water-table stabilisation, microclimate cooling, food-system resilience.",
+
+  "nbcsIntervention": ["urban_agroforestry", "slope_agroforestry", "rainwater_harvesting", "community_garden", "school_garden"],
+  "nbcsSecondary": ["food_local_production", "livelihoods_sustainable", "drr_heat_resilience", "edu_youth_engagement", "circular_organic"],
+
+  "projectDescription": "Hybrid Community Agroforestry & Market Garden (TEST) — establishes a 5-ha integrated agroforestry system on a community-owned plot in the May Pen / Mocho corridor of Clarendon. Components: (1) 2,500 native fruit and timber trees of 15 species at 5 m × 5 m spacing on contour lines, (2) drip irrigation across the full 5 ha (solar-pumped from rainwater storage), (3) intercropped vegetables and short-cycle crops between tree lines for early income, (4) solar-powered post-harvest processing shed (drying, packing, light value-add), (5) market linkages to 8 schools (public-good supply) and a Kingston farm-to-table chain (revenue), (6) a 12-month training programme for 25 youth farmers covering climate-smart agroforestry, business operations, and cooperative governance.",
+
+  "outcomeMetrics": [
+    { "outcomeName": "Land Restored",                    "outcomeBaseline": "0 ha",        "outcomeExpected": "5 ha",      "outcomeMeasured": "GPS survey + drone imagery" },
+    { "outcomeName": "Trees Planted",                    "outcomeBaseline": "0",          "outcomeExpected": "2,500",      "outcomeMeasured": "On-site count + survival audit at month 12" },
+    { "outcomeName": "Youth Farmers Trained",            "outcomeBaseline": "0",          "outcomeExpected": "25",         "outcomeMeasured": "Attendance roster + competency assessment" },
+    { "outcomeName": "Tree Survival Rate (12 months)",   "outcomeBaseline": "n/a",        "outcomeExpected": "≥80%",       "outcomeMeasured": "Census audit on a 100-tree random sample" },
+    { "outcomeName": "Annual Income Per Farmer (Year 2)","outcomeBaseline": "JMD 240,000","outcomeExpected": "JMD 480,000","outcomeMeasured": "Cooperative income statement + farmer survey" },
+    { "outcomeName": "Schools Supplied With Fresh Produce", "outcomeBaseline": "0",     "outcomeExpected": "8",          "outcomeMeasured": "Signed school supply agreements + delivery logs" },
+    { "outcomeName": "Carbon Sequestration (tCO2e/yr)",  "outcomeBaseline": "0",          "outcomeExpected": "60",         "outcomeMeasured": "IPCC Tier-2 estimation from species + DBH" }
+  ],
+
+  "focusLenses": [
+    { "lensName": "Climate Additionality",  "selectedOption": "high",        "selectedLabel": "High — without J-USE the agroforestry establishment doesn't happen at this scale" },
+    { "lensName": "Gender",                 "selectedOption": "intentional", "selectedLabel": "Intentional — 60% of trained farmers are women, including 4 women-led producer groups" },
+    { "lensName": "Youth",                  "selectedOption": "core",        "selectedLabel": "Core — entire programme targets youth (18–35) farmers" },
+    { "lensName": "Vulnerability",          "selectedOption": "high",        "selectedLabel": "High — beneficiaries are informal-settlement residents in a drought-prone parish" },
+    { "lensName": "Disability Inclusion",   "selectedOption": "accessible",  "selectedLabel": "Accessible — site design accommodates 3 farmers with mobility needs" },
+    { "lensName": "Financial Sustainability","selectedOption": "hybrid",      "selectedLabel": "Hybrid revenue + public-goods model designed to be self-sustaining within 24 months" }
+  ],
+
+  "beneficiaryEstimation": "Direct beneficiaries calculated from cooperative member roster (25 youth farmers). Indirect: spouses + dependents (avg 4 per household) = 100. Public beneficiaries: 8 schools × ~120 pupils = 960 children receiving fresh produce.",
+  "directBeneficiaries": "25",
+  "indirectBeneficiaries": "100",
+  "publicBeneficiaries": "960",
+  "targetGroups": ["youth", "women", "farmers", "low_income"],
+  "womenPct": "60",
+  "youthPct": "100",
+  "lowIncomePct": "85",
+  "vulnerablePct": "65",
+
+  "inclusionApproach": "Programme design centred on youth (18–35) and women smallholders (60% target). Outreach via existing women-led RADA networks and church-based youth groups. All training materials in patois-friendly English with audio versions. Childcare stipend at training events. Site infrastructure designed for mobility access (3 known beneficiaries with mobility needs).",
+
+  "genderAnalysisConducted": true,
+  "genderAnalysisFindings": "A 2025 baseline survey of 30 prospective members revealed: women hold 14% of land titles in the catchment but contribute 52% of farm labour; women are 3× more likely to forgo income during drought to maintain household food security; women report market access as their #1 constraint. Programme responds by titling 3 of 5 income streams via women-led producer groups, providing childcare during training, and prioritising women in market-linkage roles.",
+
+  "gbvRiskConsidered": true,
+  "gbvMitigationMeasures": "All workshops daylight-only; site has 24/7 lighting; safeguarding policy adopted (April 2026); designated community focal point for grievance reporting; partnership with Bureau of Gender Affairs for monthly check-ins; mandatory training for all male crew on respectful workplace.",
+
+  "jobsCreated": "12",
+  "jobsWomen": "8",
+  "peopleTrained": "25",
+  "womenEnterprises": "4",
+  "womenEmployed": "8",
+  "youthEmployed": "12",
+  "pwdEmployed": "2",
+
+  "vulnerabilityBenefitsLink": "Beneficiaries are concentrated in the parish's most drought-vulnerable settlements. The agroforestry system stabilises income through 12 months even when seasonal crops fail, building household resilience. Women receive priority in income-generating roles, addressing gendered vulnerability. Youth (the demographic with highest unemployment in Clarendon: 32%) gain stable, climate-smart livelihoods.",
+  "benefitIntensity": "high",
+  "benefitTiming": "medium_term",
+
+  "benefitTraceability": [
+    { "outcomeLabel": "Stable smallholder income",     "sector": "Agriculture / Food Systems",       "groups": ["youth", "women"],                "how": "Year-round drip-irrigated production + diversified market channels (schools + chain) eliminates the dry-season income gap.",  "intensity": "high",   "timing": "12_24_months", "verification": "Cooperative income statements + farmer survey" },
+    { "outcomeLabel": "Climate-resilient land + soil", "sector": "Ecological / Watershed",           "groups": ["community"],                       "how": "2,500 trees on contour reduce runoff by ~40%, rebuild soil organic matter, sequester carbon.",                                  "intensity": "high",   "timing": "0_12_months",  "verification": "Soil tests + drone NDVI baseline-vs-final" },
+    { "outcomeLabel": "Microclimate cooling",          "sector": "Ecological / Health",              "groups": ["community", "schoolchildren"],   "how": "Tree canopy reduces ground temperatures 3–5 °C, mitigating heat stress in adjacent informal settlements.",                  "intensity": "medium", "timing": "12_24_months", "verification": "Hobo data-logger temperature surveys" },
+    { "outcomeLabel": "Public-good fresh-food supply", "sector": "Food Systems / Education",         "groups": ["schoolchildren"],                  "how": "8 schools receive consistent supply of fruits + vegetables under a J-USE-supported public-goods agreement.",                "intensity": "high",   "timing": "0_12_months",  "verification": "School delivery logs + nutrition impact survey" },
+    { "outcomeLabel": "Women-led economic empowerment","sector": "Livelihoods / Gender",             "groups": ["women"],                            "how": "4 women-led producer groups own 3 of 5 income streams (post-harvest processing, school supply, market sales, marketing).",   "intensity": "high",   "timing": "0_12_months",  "verification": "Producer-group revenue + leadership-position counts" }
+  ],
+
+  "pathway": "hybrid",
+  "pathwayRationale": "Agroforestry provides both monetisable produce (revenue stream — Kingston farm-to-table chain + cooperative market sales) AND public-good outputs (school fresh-food supply at cost, watershed services, microclimate cooling, biodiversity habitat). The hybrid structure ensures the operation reaches break-even within 24 months while preserving non-market public benefits that justify catalytic grant capital.",
+
+  "marketCustomer": "hotels_restaurants",
+  "marketRevenue": "JMD 5.4M projected gross revenue Year 2 from: (1) Kingston Bistro Co-op weekly produce supply contract (JMD 2.8M/yr), (2) Direct cooperative market sales (JMD 1.6M/yr), (3) Value-added products from solar-dryer (JMD 1.0M/yr).",
+  "marketOMCoverage": "Year 1: 35% O&M coverage from sales; Year 2: 90% coverage; Year 3+: 110% (surplus reinvested in expansion). Verified via cooperative cash-flow projection reviewed by RADA finance specialist.",
+
+  "hybridAnchorPartner": "yes_confirmed",
+  "hybridAnchorPartnerNotes": "Kingston Bistro Co-op — an established farm-to-table restaurant network of 4 venues. Letter of Intent attached committing to JMD 2.8M/yr produce off-take at fair-trade pricing for 3 years.",
+  "hybridPublicGoods": "8 primary schools in Clarendon receive fresh-produce supply at cost (JMD 800k/yr public-good outflow), serving ~960 children with improved nutrition. Rio Minho watershed: improved baseflow + reduced sedimentation. Microclimate cooling for adjacent informal settlements.",
+  "hybridMarketPct": "70",
+
+  "publicAgencyAdopt": "yes_verbal",
+  "publicNDCAlign": "high",
+  "publicNDCAlignNotes": "Aligns with Jamaica's NDC commitment to (a) increase forest cover by 10% by 2030 — this project adds 5 ha of native agroforestry; (b) climate-smart agriculture under the Vision 2030 Jamaica Agriculture Sector Plan; (c) Sustainable Land Management Project commitments under the Forestry Department's Strategic Forest Management Plan 2017–2027.",
+
+  "sustainability": "By Month 24 the cooperative covers 100% of operating costs from market revenue. The drip irrigation system has a 15-year design life with annual maintenance budgeted at JMD 80k (covered by sales). Tree replacement (5%/yr) funded from operating reserves. Community-owned land tenure is secured (registered cooperative lease, 30-year term).",
+  "scalingPotential": "high",
+  "scalingPotentialNotes": "Replicable across Clarendon's 5 youth-cooperative chapters (potential ×5 = 25 ha by 2028). The cooperative becomes a regional anchor for additional NbCS programmes — water harvesting, value-add processing, climate-smart livestock integration. RADA has expressed interest in licensing the model for parish-wide rollout.",
+  "scalingPathway": "Phase 1 (months 1–12): proof on 5 ha. Phase 2 (years 2–3): replicate across 4 sister cooperatives in Clarendon. Phase 3 (years 3–5): RADA-supported parish-wide programme (target: 50 ha aggregated). Phase 4: regional programme via Caribbean Climate-Smart Agriculture Network.",
+  "partnerSummary": "RADA (extension + soil testing); HEART/NSTA (training accreditation); Kingston Bistro Co-op (anchor off-taker); 8 Clarendon primary schools (public-good off-takers); Bureau of Gender Affairs (gender + GBV technical advisor); Forestry Department (native species sourcing).",
+
+  "enablers": ["blended_finance", "technical_capacity", "market_platform", "community_governance", "data_systems", "policy"],
+  "enablersDetail": [
+    { "enablerName": "policy",                "enablerLabel": "Policy/Regulatory Support",   "status": "have", "notes": "30-year community-owned lease registered at Lands & Surveys; cooperative bylaws ratified by Department of Cooperatives." },
+    { "enablerName": "blended_finance",        "enablerLabel": "Blended Finance Structure",   "status": "need", "notes": "Initial J-USE grant + Year-2+ revenue (Kingston Bistro LOI). Concessional loan or impact capital still needed for Year-3 expansion." },
+    { "enablerName": "technical_capacity",     "enablerLabel": "Technical Capacity Building","status": "have", "notes": "HEART/NSTA-accredited curriculum co-developed; first cohort intake May 2026. RADA agronomist on monthly retainer." },
+    { "enablerName": "community_governance",   "enablerLabel": "Community Governance Model", "status": "have", "notes": "Cooperative bylaws, elected board (50% women, 100% youth), 6-year operating history with quarterly general assemblies." },
+    { "enablerName": "market_platform",        "enablerLabel": "Market Aggregation Platform","status": "need", "notes": "Kingston Bistro Co-op LOI executed April 2026 (anchor off-take JMD 2.8M/yr). 8 school supply agreements still in negotiation." },
+    { "enablerName": "data_systems",           "enablerLabel": "Data/Knowledge Systems",      "status": "need", "notes": "Soil-test baseline complete. Drone NDVI + IoT moisture sensors planned for Year 2; M&E framework in design with HEART/NSTA." }
+  ],
+  "enablingConditionsReflection": "The cooperative's 6-year track record + secured land tenure + established RADA/HEART partnerships materially de-risk this project. The constraint is purely capital: without J-USE the agroforestry establishment is delayed 5+ years.",
+
+  "implementationStructure": [
+    { "roleName": "Project Lead (overall delivery)",  "organizationName": "Clarendon Youth Farmers Cooperative", "responsibility": "End-to-end accountability, reporting to EFJ, board liaison." },
+    { "roleName": "Lead Agronomist",                  "organizationName": "RADA Clarendon Office",               "responsibility": "Species selection, soil-test interpretation, agroforestry design validation, monthly site supervision." },
+    { "roleName": "Training Coordinator",             "organizationName": "HEART/NSTA",                            "responsibility": "Curriculum delivery, cohort management, assessment, certification." },
+    { "roleName": "Finance + M&E",                    "organizationName": "Cooperative + external auditor",        "responsibility": "Quarterly financial reports, M&E data collection, annual audit." },
+    { "roleName": "Gender + Safeguarding Focal",      "organizationName": "Bureau of Gender Affairs (volunteer)",  "responsibility": "Gender-sensitive monitoring, GBV grievance handling, monthly check-ins." },
+    { "roleName": "Anchor Off-taker Liaison",         "organizationName": "Kingston Bistro Co-op",                 "responsibility": "Weekly produce off-take, quality feedback, payment within 14 days." }
+  ],
+  "implLead":            "Clarendon Youth Farmers Cooperative",
+  "implLeadResp":        "End-to-end project delivery; reporting; board accountability",
+  "implTechnical":       "RADA Clarendon Office",
+  "implTechnicalResp":   "Agronomy design + monthly site supervision",
+  "implCommunity":       "Clarendon Youth Farmers Cooperative + 8 partner schools",
+  "implCommunityResp":   "Beneficiary engagement, school supply agreements",
+  "implFinancial":       "Cooperative finance officer + external auditor",
+  "implFinancialResp":   "Quarterly financial reporting, annual audit",
+  "implGovernment":      "RADA + Forestry Department",
+  "implGovernmentResp":  "Extension services + native-species seedling sourcing",
+  "implME":              "Cooperative M&E officer with HEART/NSTA support",
+  "implMEResp":          "Indicator data collection, mid-term + final review",
+
+  "maintenanceWho":      "The Clarendon Youth Farmers Cooperative (registered legal entity) maintains the system post-grant. A dedicated maintenance crew of 4 cooperative members is funded from operating revenue.",
+  "maintenanceFunding":  "Years 1–2: J-USE grant + initial sales. Year 3+: 100% from cooperative operating revenue (target JMD 5.4M/yr). Reserve fund equivalent to 6 months O&M built up by Year 2.",
+  "maintenanceDuration": "perpetual",
+  "maintenanceDurationNotes": "Indefinite. Tree replacement (5%/yr) and irrigation system maintenance budgeted in cooperative operating plan. Land tenure secured for 30 years.",
+  "maintenanceFallback": "If revenue projections fall short, cooperative will reduce expansion (rather than maintenance). Existing network of RADA + HEART + Forestry Dept can step in for technical support at low/no cost. Co-financing partner (Kingston Bistro Co-op) has signalled willingness to bridge a 6-month working-capital gap if needed.",
+
+  "estimatedBudget": "JMD 8,350,000",
+  "totalCost":       "8350000",
+  "totalBudget":     "8350000",
+  "juseRequest":     "6200000",
+  "otherFunding":    "2150000",
+  "startDate":       "2026-07-01",
+  "endDate":         "2027-06-30",
+
+  "iucn_biodiversity":     "15 native fruit + timber species selected (mango, ackee, breadfruit, mahogany, coconut, sweetsop, naseberry, otaheite apple, June plum, guinep, sour orange, sweet orange, lime, ginger lily, lemongrass) creates pollinator habitat and rebuilds ecosystem function on degraded smallholder land.",
+  "iucn_governance":       "Decisions made by elected cooperative board (50% women, 100% youth). Quarterly general assemblies. Independent grievance focal. Transparent reporting to EFJ + members.",
+  "iucn_grant_compliance": "Cooperative has registered NPO status, dedicated bank account, audited financials (2023, 2024). Quarterly + annual reporting capacity demonstrated through prior RADA grants.",
+  "iucn_mitigation":       "Estimated 60 tCO2e/yr sequestered from agroforestry establishment; additional avoided emissions from displaced diesel-pump irrigation and reduced food-mile from local-school supply chain.",
+  "iucn_tradeoffs":        "Trade-off considered: tree planting reduces immediate annual cropland by ~15%. Mitigation: intercropping vegetables in tree alleys for the first 3 years until canopy closes.",
+
+  "tnaMatrix": [
+    { "competency": "NbCS systems thinking",          "score": 3, "priority": "high", "notes": "Strong ecological knowledge; need framework training" },
+    { "competency": "Climate adaptation planning",    "score": 3, "priority": "high", "notes": "Practical experience; gap is on adaptation logic frameworks" },
+    { "competency": "Cooperative governance",         "score": 4, "priority": "low",  "notes": "6-year operating history" },
+    { "competency": "Financial management",           "score": 3, "priority": "high", "notes": "Audited financials; need capacity for hybrid model" },
+    { "competency": "Gender-responsive design",       "score": 4, "priority": "low",  "notes": "Bureau of Gender Affairs partnership active" },
+    { "competency": "M&E + impact measurement",       "score": 2, "priority": "high", "notes": "Currently informal; need structured indicator framework" },
+    { "competency": "Market linkages + business dev", "score": 2, "priority": "high", "notes": "Anchor off-taker secured; need broader chain development" },
+    { "competency": "Climate science / NDC alignment","score": 2, "priority": "high", "notes": "Conceptual gap on national climate framework" }
+  ],
+  "tna_climate":     "intermediate", "tna_grant":       "intermediate", "tna_business":   "beginner",     "tna_value":      "beginner",
+  "tna_native":      "advanced",     "tna_nbcs_design": "intermediate", "tna_system":     "intermediate", "tna_planning":   "intermediate",
+  "tna_me":          "beginner",     "tna_disagg":      "beginner",     "tna_gender":     "advanced",     "tna_community":  "advanced",
+  "tna_stakeholder": "advanced",     "tna_digital":     "beginner",     "tna_budget":     "intermediate", "tna_cofin":      "intermediate",
+
+  "capacityBuildingNeeds":   ["nbcs_design", "climate_adaptation_logic", "financial_modelling_hybrid", "indicator_framework_design", "value_chain_development", "ndc_alignment"],
+  "preferredLearningFormats":["in_person", "case_studies", "peer_learning", "live_virtual"],
+  "learningFormat": ["in_person", "case_studies", "peer_learning"],
+  "accessibilityNeeds": "yes_offline",
+  "accessibilityDetails": "3 cooperative members have mobility needs. Site infrastructure (raised beds + ramped processing shed) accommodates wheelchair access. Training venue is ground-floor and ramped.",
+
+  "documents": [
+    { "documentType": "Letter of Intent and Authorisation (TEST)", "fileName": "TEST-Letter-of-Intent.pdf", "fileUrl": "" },
+    { "documentType": "Detailed Budget Breakdown (TEST)",          "fileName": "TEST-Budget-Workbook.pdf",   "fileUrl": "" },
+    { "documentType": "Organisation Registration Certificate (TEST)", "fileName": "TEST-Reg-Cert.pdf",       "fileUrl": "" },
+    { "documentType": "Organisational Capacity / Previous Work (TEST)", "fileName": "TEST-Capacity.pdf",     "fileUrl": "" }
+  ],
+
+  "additionalComments": "WORKED EXAMPLE — illustrative content based on the Hybrid Community Farm reference workbook. Replace every field with your own organisation's information before submitting. Do NOT submit this example as your application.",
+
+  "authName":  "",
+  "authTitle": "Executive Director",
+  "authDate":  "",
+
+  "declaration1": true,
+  "declaration2": true,
+  "declaration3": true,
+  "declaration4": true,
+  "declaration5": true,
+  "declaration6": true,
+  "declaration7": true,
+  "declaration8": true,
+
+  "submittedAt":      "2026-04-30T17:00:00Z",
+  "generationDate":   "April 30, 2026",
+  "generationTime":   "5:00 PM"
+}

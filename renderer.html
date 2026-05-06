@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>J-USE REOI 2026 — Full Application</title>
+
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 10pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.55;
+      background-color: #ffffff;
+    }
+
+    /* ========== PAGE SETUP ========== */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 16mm 18mm 22mm 18mm;
+      margin: 0 auto;
+      position: relative;
+      background-color: #ffffff;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* ========== COVER PAGE ========== */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 297mm;
+      text-align: center;
+    }
+
+    .cover-logo {
+      width: 200px;
+      height: auto;
+      margin-bottom: 30px;
+    }
+
+    .cover-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 22pt;
+      font-weight: 700;
+      color: #2E8B57;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .cover-subtitle {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16pt;
+      color: #555555;
+      margin-bottom: 40px;
+    }
+
+    .cover-ref-box {
+      display: inline-block;
+      background: linear-gradient(135deg, #2E8B57, #3da06a);
+      color: #ffffff;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16pt;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 6px;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .cover-info-grid {
+      width: 70%;
+      margin: 0 auto;
+      border-top: 2px solid #2E8B57;
+      padding-top: 20px;
+    }
+
+    .cover-info-grid .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dotted #d0d0d0;
+    }
+
+    .cover-info-grid .info-label {
+      font-size: 10pt;
+      color: #888888;
+      text-align: left;
+    }
+
+    .cover-info-grid .info-value {
+      font-size: 10pt;
+      color: #1a1a1a;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 18mm;
+      font-size: 8pt;
+      color: #aaaaaa;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ========== HEADER ========== */
+    .doc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #2E8B57;
+      padding-bottom: 10px;
+      margin-bottom: 5px;
+    }
+
+    .doc-header-logo {
+      width: 140px;
+      height: auto;
+    }
+
+    .doc-header-text {
+      text-align: right;
+    }
+
+    .doc-header-text h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14pt;
+      color: #2E8B57;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .doc-header-text p {
+      font-size: 8pt;
+      color: #666666;
+      margin-top: 2px;
+    }
+
+    /* ========== REFERENCE BADGE ========== */
+    .ref-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #2E8B57, #3da06a);
+      color: #ffffff;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11pt;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========== SECTIONS ========== */
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section-header {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: #2E8B57;
+      border-bottom: 2px solid #c8e6d0;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-header .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background-color: #2E8B57;
+      color: #ffffff;
+      font-size: 10pt;
+      font-weight: 700;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .sub-section-header {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #3a6b47;
+      border-bottom: 1px solid #dce8e0;
+      padding-bottom: 3px;
+      margin: 14px 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========== DETAIL TABLE ========== */
+    .detail-grid {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .detail-grid tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .detail-grid tr:last-child {
+      border-bottom: none;
+    }
+
+    .detail-grid .label-cell {
+      font-weight: 600;
+      color: #555555;
+      font-size: 9pt;
+      padding: 5px 10px 5px 0;
+      width: 180px;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    .detail-grid .value-cell {
+      font-size: 9pt;
+      color: #1a1a1a;
+      padding: 5px 0;
+      vertical-align: top;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* ========== TWO-COLUMN LAYOUT ========== */
+    .two-col {
+      display: flex;
+      gap: 20px;
+    }
+
+    .two-col .col {
+      flex: 1;
+    }
+
+    /* ========== DESCRIPTION BLOCK ========== */
+    .description-block {
+      background-color: #f8faf9;
+      border-left: 4px solid #2E8B57;
+      padding: 12px 14px;
+      border-radius: 0 4px 4px 0;
+      font-size: 9pt;
+      line-height: 1.6;
+      color: #333333;
+      margin: 6px 0;
+    }
+
+    /* ========== DATA TABLE ========== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 8.5pt;
+    }
+
+    .data-table thead th {
+      background-color: #2E8B57;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .data-table thead th:first-child {
+      border-radius: 4px 0 0 0;
+    }
+
+    .data-table thead th:last-child {
+      border-radius: 0 4px 0 0;
+    }
+
+    .data-table tbody td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #e8e8e8;
+      color: #1a1a1a;
+      vertical-align: top;
+    }
+
+    .data-table tbody tr:nth-child(even) {
+      background-color: #f8faf9;
+    }
+
+    .data-table tbody tr:last-child td {
+      border-bottom: 1px solid #d0d0d0;
+    }
+
+    /* ========== ENABLERS TABLE ========== */
+    .enabler-item {
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .enabler-item .enabler-header {
+      background-color: #f0faf4;
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 9pt;
+      color: #2E8B57;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .enabler-item .enabler-body {
+      padding: 8px 12px;
+      font-size: 9pt;
+    }
+
+    .enabler-item .enabler-body .enabler-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .enabler-item .enabler-body .enabler-label {
+      font-weight: 600;
+      color: #666666;
+      min-width: 60px;
+    }
+
+    /* ========== FILE LIST ========== */
+    .file-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .file-list li {
+      font-size: 9pt;
+      color: #2E8B57;
+      padding: 5px 0;
+      border-bottom: 1px dotted #e0e0e0;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .file-list li:last-child {
+      border-bottom: none;
+    }
+
+    .file-list li::before {
+      content: "\25A0";
+      color: #2E8B57;
+      font-size: 7pt;
+      flex-shrink: 0;
+    }
+
+    .file-list li a {
+      color: #2E8B57;
+      text-decoration: none;
+    }
+
+    /* ========== DECLARATION CHECKBOX ========== */
+    .declaration-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .declaration-checkbox {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #2E8B57;
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2E8B57;
+      font-size: 10pt;
+      font-weight: 700;
+    }
+
+    /* ========== DECLARATION LIST (page-break safe) ========== */
+    .declaration-list {
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+
+    .declaration-list .declaration-item {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 5px;
+      font-size: 8.5pt;
+      line-height: 1.4;
+    }
+
+    /* ========== TIMESTAMP ========== */
+    .timestamp {
+      margin-top: 20px;
+      padding: 8px 14px;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      font-size: 8pt;
+      color: #888888;
+      text-align: right;
+    }
+
+    /* ========== FOOTER ========== */
+    .page-footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 18mm;
+      right: 18mm;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7pt;
+      color: #999999;
+    }
+
+    .page-footer .confidential {
+      color: #b0b0b0;
+      font-style: italic;
+    }
+
+    /* ========== CONFIDENTIALITY WATERMARK ========== */
+    .confidentiality-notice {
+      text-align: center;
+      margin-top: 16px;
+      padding: 8px 0;
+      border-top: 1px dashed #d0d0d0;
+      font-size: 7pt;
+      color: #aaaaaa;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ========== SCORE BADGE ========== */
+    .score-badge {
+      display: inline-block;
+      background-color: #2E8B57;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 9pt;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .score-badge.low {
+      background-color: #e67e22;
+    }
+
+    .score-badge.medium {
+      background-color: #f0ad4e;
+      color: #333333;
+    }
+
+    /* ========== PATHWAY BOX ========== */
+    .pathway-box {
+      background-color: #f0faf4;
+      border: 1px solid #c8e6d0;
+      border-radius: 4px;
+      padding: 12px 14px;
+      margin: 8px 0;
+    }
+
+    .pathway-box .pathway-title {
+      font-weight: 700;
+      color: #2E8B57;
+      font-size: 10pt;
+      margin-bottom: 6px;
+    }
+
+    /* ========== PRINT STYLES ========== */
+    @media print {
+      /* @page setup */
+      @page {
+        size: A4 portrait;
+        margin: 16mm 18mm 22mm 18mm;
+      }
+
+      html {
+        font-size: 10pt;
+        line-height: 1.55;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+        background-color: #ffffff;
+      }
+
+      /* Hide debug / non-printable elements */
+      .debug-panel,
+      .debug-info,
+      .debug-bar,
+      .debug-overlay,
+      [data-debug],
+      .no-print,
+      .screen-only {
+        display: none !important;
+      }
+
+      /* Page containers */
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 0; /* margins handled by @page */
+        margin: 0;
+        page-break-after: always;
+        box-shadow: none;
+        border: none;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      /* Cover page — force exact A4 fill */
+      .cover-page {
+        height: 297mm;
+        min-height: 297mm;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      /* Section-level break handling — allow long sections to flow */
+      .section {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      .section-header {
+        page-break-after: avoid;
+        break-after: avoid;
+        orphans: 4;
+        widows: 2;
+      }
+
+      .sub-section-header {
+        page-break-after: avoid;
+        break-after: avoid;
+        orphans: 3;
+        widows: 2;
+      }
+
+      /* Table header repetition for multi-page tables */
+      .data-table thead {
+        display: table-header-group;
+      }
+
+      .data-table tfoot {
+        display: table-footer-group;
+      }
+
+      /* Data table flow — allow rows to break for long tables */
+      .data-table {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      .data-table tbody tr {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      /* Detail grid — keep label-value pairs together */
+      .detail-grid {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      .detail-grid tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Two-column layout — try to keep together */
+      .two-col {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Description blocks — allow break for long text */
+      .description-block {
+        page-break-inside: auto;
+        break-inside: auto;
+        orphans: 3;
+        widows: 3;
+      }
+
+      /* Enabler items — keep together if small */
+      .enabler-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Pathway box */
+      .pathway-box {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Doc header — stay with section content */
+      .doc-header {
+        page-break-after: avoid;
+        break-after: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Ref badge — don't orphan at page bottom */
+      .ref-badge {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      /* Declarations — allow flow across pages */
+      .declaration-list {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      .declaration-list .declaration-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* File list */
+      .file-list {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      .file-list li {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Score badges — print colors */
+      .score-badge,
+      .score-badge.low,
+      .score-badge.medium {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      /* Data table thead — print colors */
+      .data-table thead th {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      /* Ref badge — print gradient */
+      .ref-badge,
+      .cover-ref-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      /* Page footer — stay at bottom of each page */
+      .page-footer {
+        position: absolute;
+        bottom: 10mm;
+        left: 18mm;
+        right: 18mm;
+      }
+
+      /* Cover footer positioning */
+      .cover-footer {
+        position: absolute;
+        bottom: 18mm;
+      }
+
+      /* Timestamp */
+      .timestamp {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Confidentiality notice */
+      .confidentiality-notice {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Long text word-wrap enforcement */
+      .value-cell,
+      .description-block,
+      .enabler-item .enabler-body {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+      }
+
+      /* Remove all shadows and outlines */
+      * {
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      /* Prevent images from breaking */
+      img {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* General orphan/widow control for text nodes */
+      p, div, td, li {
+        orphans: 3;
+        widows: 3;
+      }
+    }
+
+    /* ========== SCREEN PREVIEW ========== */
+    @media screen {
+      body {
+        background-color: #e8e8e8;
+      }
+
+      .page {
+        margin: 20px auto;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+      }
+
+      .cover-page {
+        min-height: auto;
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- COVER PAGE                                                     -->
+  <!-- ============================================================ -->
+  <div class="page cover-page" id="cover">
+
+    <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="Environmental Foundation of Jamaica" class="cover-logo" />
+
+    <h1 class="cover-title">Jamaica Urban Solutions for the Environment (J-USE)</h1>
+    <p class="cover-subtitle">Full Application Review</p>
+
+    <div class="cover-ref-box" data-field="ref_number"></div>
+
+    <div class="cover-info-grid">
+      <div class="info-row">
+        <span class="info-label">Organization</span>
+        <span class="info-value" data-field="orgName"></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Project Title</span>
+        <span class="info-value" data-field="projectTitle"></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Parish</span>
+        <span class="info-value" data-field="parish"></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Submitted</span>
+        <span class="info-value"><span data-field="submission_date"></span> at <span data-field="submission_time"></span></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Primary Contact</span>
+        <span class="info-value"><span data-field="coverContactName"></span> (<span data-field="coverContactEmail"></span>)</span>
+      </div>
+    </div>
+
+    <div class="cover-footer">Confidential &mdash; For Internal Review Only</div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef_cover"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Cover Page</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: ORGANIZATION DETAILS                                -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-1">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef1"></span> | <span data-field="headerDate1"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef1"></span></div>
+
+    <!-- ========== SECTION 1: ORGANIZATION DETAILS ========== -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">1</span>
+        Organization Details
+      </div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="orgName">
+          <td class="label-cell">Organization Name</td>
+          <td class="value-cell" data-field="orgName"></td>
+        </tr>
+        <tr data-hide-if-empty="regType">
+          <td class="label-cell">Registration Type</td>
+          <td class="value-cell"><span data-field="regType"></span><span data-field="regTypeOtherText" data-prefix=" — "></span></td>
+        </tr>
+        <tr data-hide-if-empty="orgCategory">
+          <td class="label-cell">Organization Category</td>
+          <td class="value-cell"><span data-field="orgCategory"></span><span data-field="orgCategoryOtherText" data-prefix=" — "></span></td>
+        </tr>
+        <tr data-hide-if-empty="orgCapacity">
+          <td class="label-cell">Organizational Capacity</td>
+          <td class="value-cell" data-field="orgCapacity"></td>
+        </tr>
+        <tr id="dateOfFormationRow" data-hide-if-empty="dateOfFormation">
+          <td class="label-cell">Date of Formation</td>
+          <td class="value-cell" data-field="dateOfFormation"></td>
+        </tr>
+        <tr id="regNumberRow" data-hide-if-empty="regNumber">
+          <td class="label-cell">Registration Number</td>
+          <td class="value-cell" data-field="regNumber"></td>
+        </tr>
+        <tr data-hide-if-empty="orgParish">
+          <td class="label-cell">Organization Parish</td>
+          <td class="value-cell" data-field="orgParish"></td>
+        </tr>
+        <tr data-hide-if-empty="orgAddress">
+          <td class="label-cell">Physical Address</td>
+          <td class="value-cell" data-field="orgAddress"></td>
+        </tr>
+        <tr data-hide-if-empty="website">
+          <td class="label-cell">Website</td>
+          <td class="value-cell" data-field="website"></td>
+        </tr>
+        <tr data-hide-if-empty="socialMedia">
+          <td class="label-cell">Social Media</td>
+          <td class="value-cell" data-field="socialMedia"></td>
+        </tr>
+        <tr data-hide-if-empty="bankAccount">
+          <td class="label-cell">Bank Account (Last 4 digits)</td>
+          <td class="value-cell" data-field="bankAccount"></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Primary Contact -->
+    <div class="section">
+      <div class="sub-section-header">Primary Contact</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="contactName">
+          <td class="label-cell">Full Name</td>
+          <td class="value-cell" data-field="contactName"></td>
+        </tr>
+        <tr data-hide-if-empty="contactTitle">
+          <td class="label-cell">Title / Position</td>
+          <td class="value-cell" data-field="contactTitle"></td>
+        </tr>
+        <tr data-hide-if-empty="contactGender">
+          <td class="label-cell">Gender</td>
+          <td class="value-cell" data-field="contactGender"></td>
+        </tr>
+        <tr data-hide-if-empty="email">
+          <td class="label-cell">Email</td>
+          <td class="value-cell" data-field="email"></td>
+        </tr>
+        <tr data-hide-if-empty="phone">
+          <td class="label-cell">Phone</td>
+          <td class="value-cell" data-field="phone"></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SOE / Government Head (conditional) -->
+    <div class="section" id="soe-gov-contact-section" style="display: none;">
+      <div class="sub-section-header" id="soe-gov-contact-header">Secondary Contact</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="secondaryContactName">
+          <td class="label-cell">Full Name</td>
+          <td class="value-cell" data-field="secondaryContactName"></td>
+        </tr>
+        <tr data-hide-if-empty="secondaryContactTitle">
+          <td class="label-cell">Title / Position</td>
+          <td class="value-cell" data-field="secondaryContactTitle"></td>
+        </tr>
+        <tr data-hide-if-empty="secondaryContactEmail">
+          <td class="label-cell">Email</td>
+          <td class="value-cell" data-field="secondaryContactEmail"></td>
+        </tr>
+        <tr data-hide-if-empty="secondaryContactPhone">
+          <td class="label-cell">Phone</td>
+          <td class="value-cell" data-field="secondaryContactPhone"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef1"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 1 &mdash; Organization Details</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: CLIMATE RISK & CONTEXT                              -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-2">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef2"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef2"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">2</span>
+        Climate Risk &amp; Context
+      </div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="parish">
+          <td class="label-cell">Project Parish</td>
+          <td class="value-cell" data-field="parish"></td>
+        </tr>
+        <tr data-hide-if-empty="location">
+          <td class="label-cell">Community / Area</td>
+          <td class="value-cell" data-field="location"></td>
+        </tr>
+        <tr data-hide-if-empty="classification">
+          <td class="label-cell">Land Use Classification</td>
+          <td class="value-cell" data-field="classification"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Climate Hazards Identified</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Hazards</td>
+          <td class="value-cell" data-field="hazards"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Main Climate Challenges (max 2)</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Challenges</td>
+          <td class="value-cell" data-field="climateChallenge"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Coping Mechanisms</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Existing Strategies</td>
+          <td class="value-cell" data-field="copingMechanisms"></td>
+        </tr>
+        <tr data-hide-if-empty="copingDescription">
+          <td class="label-cell">Coping Description</td>
+          <td class="value-cell" data-field="copingDescription"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">System Flows</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">System Flows</td>
+          <td class="value-cell" data-field="systemFlows"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Priority Needs &amp; System Transformation</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="priorityNeeds">
+          <td class="label-cell">Priority Needs</td>
+          <td class="value-cell" data-field="priorityNeeds"></td>
+        </tr>
+      </table>
+      <div class="description-block" data-field="systemTransformation"></div>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef2"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 2 &mdash; Climate Risk &amp; Context</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: NbCS INTERVENTION & PROJECT DESIGN                  -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-3">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef3"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef3"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">3</span>
+        NbCS Intervention &amp; Project Design
+      </div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="projectTitle">
+          <td class="label-cell">Project Title</td>
+          <td class="value-cell" style="font-weight: 700; font-size: 11pt;" data-field="projectTitle"></td>
+        </tr>
+        <tr data-hide-if-empty="nbcsIntervention">
+          <td class="label-cell">Primary NbCS Interventions</td>
+          <td class="value-cell"><span data-field="nbcsIntervention"></span><span data-field="nbcsOtherText" data-prefix=" — Other: "></span></td>
+        </tr>
+        <tr data-hide-if-empty="nbcsSecondary">
+          <td class="label-cell">Secondary NbCS Interventions</td>
+          <td class="value-cell"><span data-field="nbcsSecondary"></span><span data-field="nbcsSecondaryOtherText" data-prefix=" — Other: "></span></td>
+        </tr>
+        <tr id="housingVulnerabilityTierRow" data-hide-if-empty="housingVulnerabilityTier">
+          <td class="label-cell">Housing Vulnerability</td>
+          <td class="value-cell"><span id="housingVulnerabilityBadge" data-field="housingVulnerabilityTier"></span></td>
+        </tr>
+      </table>
+
+      <!-- Housing Vulnerability Context (conditional - only when Yes or Partially) -->
+      <div id="housingVulnerabilityContextSection" style="display: none;">
+        <div style="font-size: 8.5pt; font-weight: 600; color: #555; margin-bottom: 4px;">Describe the housing vulnerability context your project addresses:</div>
+        <div class="description-block" data-field="housingVulnerabilityContext"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Project Description</div>
+      <div class="description-block" data-field="projectDescription"></div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Project Summary</div>
+      <div class="description-block" data-field="summary"></div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Outcome Metrics</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Outcome</th>
+            <th style="width: 22%;">Baseline</th>
+            <th style="width: 23%;">Expected</th>
+            <th style="width: 25%;">How Measured</th>
+          </tr>
+        </thead>
+        <tbody data-field="outcomeMetrics">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Adaptation Logic (Causal Chain)</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Our Intervention</td>
+          <td class="value-cell" data-field="chainIntervention"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Will Produce</td>
+          <td class="value-cell" data-field="logicBiophysical"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Which Reduces</td>
+          <td class="value-cell" data-field="chainReduces"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">For</td>
+          <td class="value-cell" data-field="logicBeneficiaries"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Cross-Cutting Focus Lenses</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 40%;">Focus Lens</th>
+            <th style="width: 60%;">Selected Option</th>
+          </tr>
+        </thead>
+        <tbody data-field="focusLenses">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef3"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 3 &mdash; NbCS Intervention &amp; Project Design</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: BENEFICIARIES & INCLUSION                           -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-4">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef4"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef4"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">4</span>
+        Beneficiaries &amp; Inclusion
+      </div>
+
+      <div class="sub-section-header">Beneficiary Numbers</div>
+      <div class="two-col">
+        <div class="col">
+          <table class="detail-grid">
+            <tr>
+              <td class="label-cell">Direct Beneficiaries</td>
+              <td class="value-cell" style="font-weight: 700; color: #2E8B57;" data-field="directBeneficiaries"></td>
+            </tr>
+            <tr>
+              <td class="label-cell">Indirect Beneficiaries</td>
+              <td class="value-cell" data-field="indirectBeneficiaries"></td>
+            </tr>
+            <tr>
+              <td class="label-cell">Public Beneficiaries</td>
+              <td class="value-cell" data-field="publicBeneficiaries"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          <table class="detail-grid">
+            <tr>
+              <td class="label-cell">Estimation Method</td>
+              <td class="value-cell" data-field="beneficiaryEstimation"></td>
+            </tr>
+            <tr>
+              <td class="label-cell">Jobs Created</td>
+              <td class="value-cell" data-field="jobsCreated"></td>
+            </tr>
+            <tr>
+              <td class="label-cell">People Trained</td>
+              <td class="value-cell" data-field="peopleTrained"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Demographics (% of Direct Beneficiaries)</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Women</td>
+          <td class="value-cell" data-field="womenPct"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Youth (18–35)</td>
+          <td class="value-cell" data-field="youthPct"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Low Income</td>
+          <td class="value-cell" data-field="lowIncomePct"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Vulnerable Populations</td>
+          <td class="value-cell" data-field="vulnerablePct"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Target Groups</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Target Groups</td>
+          <td class="value-cell"><span data-field="targetGroups"></span><span data-field="targetGroupsOtherText" data-prefix=" — Other: "></span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Vulnerability Descriptions</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="exposureDescription">
+          <td class="label-cell">Exposure</td>
+          <td class="value-cell" data-field="exposureDescription"></td>
+        </tr>
+        <tr data-hide-if-empty="vulnerabilityDescription">
+          <td class="label-cell">Vulnerability</td>
+          <td class="value-cell" data-field="vulnerabilityDescription"></td>
+        </tr>
+        <tr data-hide-if-empty="adaptiveCapacity">
+          <td class="label-cell">Adaptive Capacity</td>
+          <td class="value-cell" data-field="adaptiveCapacity"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Benefit Traceability Matrix</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">Expected Outcome</th>
+            <th style="width: 10%;">Sector</th>
+            <th style="width: 12%;">Target Groups</th>
+            <th style="width: 18%;">How They Benefit</th>
+            <th style="width: 9%;">Intensity of Benefit</th>
+            <th style="width: 10%;">When Benefits Will Be Realised</th>
+            <th style="width: 12%;">Verification</th>
+          </tr>
+        </thead>
+        <tbody data-field="benefitTraceability">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Inclusion Approach</div>
+      <div class="description-block" data-field="inclusionApproach"></div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Gender Considerations</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Gender Considerations</td>
+          <td class="value-cell" data-field="genderConsiderations"></td>
+        </tr>
+      </table>
+
+      <!-- Gender Analysis Conducted (conditional block) -->
+      <div id="gender-analysis-section" style="display: none;">
+        <div style="margin-top: 10px; font-weight: 700; font-size: 9pt; color: #2E8B57;">Gender Analysis Conducted</div>
+        <p style="font-size: 8.5pt; color: #555; margin: 4px 0 6px 0;">A gender assessment was done to understand different needs and risks</p>
+        <div style="font-size: 8.5pt; font-weight: 600; color: #555; margin-bottom: 4px;">Findings:</div>
+        <div class="description-block" data-field="genderAnalysisFindings"></div>
+      </div>
+
+      <!-- GBV Risk Considered (conditional block) -->
+      <div id="gbv-risk-section" style="display: none;">
+        <div style="margin-top: 10px; font-weight: 700; font-size: 9pt; color: #2E8B57;">Gender-based Violence (GBV) Risk Considered</div>
+        <p style="font-size: 8.5pt; color: #555; margin: 4px 0 6px 0;">Project activities assessed for potential GBV risks and mitigation</p>
+        <div style="font-size: 8.5pt; font-weight: 600; color: #555; margin-bottom: 4px;">Mitigation Measures:</div>
+        <div class="description-block" data-field="gbvMitigationMeasures"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Employment &amp; Enterprise Metrics</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Jobs for Women</td>
+          <td class="value-cell" data-field="jobsWomen"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Women-Led Enterprises</td>
+          <td class="value-cell" data-field="womenEnterprises"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Women Employed</td>
+          <td class="value-cell" data-field="womenEmployed"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Youth Employed</td>
+          <td class="value-cell" data-field="youthEmployed"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">PWDs Employed</td>
+          <td class="value-cell" data-field="pwdEmployed"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Social Co-Benefits</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Social Co-Benefits</td>
+          <td class="value-cell" data-field="socialBenefits"></td>
+        </tr>
+        <tr data-hide-if-empty="vulnerabilityBenefitsLink">
+          <td class="label-cell">Vulnerability-Benefits Link</td>
+          <td class="value-cell" data-field="vulnerabilityBenefitsLink"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef4"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 4 &mdash; Beneficiaries &amp; Inclusion</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: VALUE PROPOSITION                                   -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-5">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef5"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef5"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">5</span>
+        Value Proposition
+      </div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Selected Value Proposition Model</td>
+          <td class="value-cell" style="font-weight: 700; color: #2E8B57;" data-field="pathway"></td>
+        </tr>
+      </table>
+    </div>
+
+      <!-- Orange warning: shown when no value pathway is selected -->
+      <div id="pathway-no-selection-warning" style="display: none; background-color: #fff8f0; border-left: 4px solid #e67e22; border-radius: 0 4px 4px 0; padding: 12px 14px; margin: 8px 0; color: #b35900; font-size: 9pt;">
+        &#9888; No value proposition model selected &mdash; this application does not specify a value model (Revenue-Generating, Hybrid, or Public Goods).
+      </div>
+
+    <div class="section">
+      <div class="sub-section-header">Model-Specific Details</div>
+
+      <!-- Market Pathway -->
+      <div class="pathway-box" id="pathway-market" style="display: none;">
+        <div class="pathway-title">Revenue-Generating Model</div>
+        <table class="detail-grid">
+          <tr data-hide-if-empty="marketRevenue">
+            <td class="label-cell">Revenue Model</td>
+            <td class="value-cell" data-field="marketRevenue"></td>
+          </tr>
+          <tr data-hide-if-empty="marketCustomer">
+            <td class="label-cell">Target Customer</td>
+            <td class="value-cell"><span data-field="marketCustomer"></span><span data-field="marketCustomerOther" data-prefix=" — Other: "></span></td>
+          </tr>
+          <tr data-hide-if-empty="marketOMCoverage">
+            <td class="label-cell">O&amp;M Cost Coverage</td>
+            <td class="value-cell" data-field="marketOMCoverage"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Hybrid Pathway -->
+      <div class="pathway-box" id="pathway-hybrid" style="display: none;">
+        <div class="pathway-title">Hybrid Model (Revenue + Public Goods)</div>
+        <table class="detail-grid">
+          <tr data-hide-if-empty="hybridMarketPct">
+            <td class="label-cell">Market Revenue %</td>
+            <td class="value-cell" data-field="hybridMarketPct"></td>
+          </tr>
+          <tr data-hide-if-empty="hybridAnchorPartner">
+            <td class="label-cell">Anchor Partner</td>
+            <td class="value-cell" data-field="hybridAnchorPartner"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Public Goods</td>
+            <td class="value-cell" data-field="hybridPublicGoods"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Public Good Pathway -->
+      <div class="pathway-box" id="pathway-public" style="display: none;">
+        <div class="pathway-title">Public Goods Model</div>
+        <table class="detail-grid">
+          <tr data-hide-if-empty="publicBeneficiaries">
+            <td class="label-cell">Public Beneficiaries</td>
+            <td class="value-cell" data-field="publicBeneficiaries"></td>
+          </tr>
+          <tr data-hide-if-empty="publicAgencyAdopt">
+            <td class="label-cell">Agency Adoption Plan</td>
+            <td class="value-cell" data-field="publicAgencyAdopt"></td>
+          </tr>
+          <tr data-hide-if-empty="publicNDCAlign">
+            <td class="label-cell">NDC Alignment</td>
+            <td class="value-cell" data-field="publicNDCAlign"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pathway Qualifying Questions (conditionally rendered by pdf-sections.js) -->
+    <div class="section" id="pathway-qualifying-section" style="display: none;">
+      <div class="sub-section-header">Model Qualifying Questions</div>
+      <table class="detail-grid">
+        <tbody id="pathway-qualifying-content">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Model Rationale</div>
+      <div class="description-block" data-field="pathwayRationale"></div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Sustainability &amp; Scaling</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="sustainability">
+          <td class="label-cell">Sustainability Plan</td>
+          <td class="value-cell" data-field="sustainability"></td>
+        </tr>
+        <tr data-hide-if-empty="scalingPotential">
+          <td class="label-cell">Scaling Potential</td>
+          <td class="value-cell" data-field="scalingPotential"></td>
+        </tr>
+        <tr data-hide-if-empty="scalingPathway">
+          <td class="label-cell">Scaling Pathway</td>
+          <td class="value-cell" data-field="scalingPathway"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef5"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 5 &mdash; Value Proposition</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: IMPLEMENTATION                                       -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-6">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef6"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef6"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">6</span>
+        Implementation
+      </div>
+
+      <div class="sub-section-header">Implementation Structure</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Role</th>
+            <th style="width: 38%;">Name / Organization</th>
+            <th style="width: 40%;">Responsibilities</th>
+          </tr>
+        </thead>
+        <tbody data-field="implementationStructure">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Enabling Conditions Reflection</div>
+      <div class="description-block" data-field="enablingConditionsReflection"></div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Implementation Enablers</div>
+      <div data-field="enablersDetail">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Maintenance &amp; Sustainability Plan</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="maintenanceWho">
+          <td class="label-cell">Maintenance Responsibility</td>
+          <td class="value-cell" data-field="maintenanceWho"></td>
+        </tr>
+        <tr data-hide-if-empty="maintenanceFunding">
+          <td class="label-cell">Maintenance Funding</td>
+          <td class="value-cell" data-field="maintenanceFunding"></td>
+        </tr>
+        <tr data-hide-if-empty="maintenanceDuration">
+          <td class="label-cell">Maintenance Duration</td>
+          <td class="value-cell" data-field="maintenanceDuration"></td>
+        </tr>
+        <tr data-hide-if-empty="maintenanceFallback">
+          <td class="label-cell">Fallback Plan</td>
+          <td class="value-cell" data-field="maintenanceFallback"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Learning &amp; Accessibility</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="learningFormat">
+          <td class="label-cell">Learning / Knowledge Format</td>
+          <td class="value-cell" data-field="learningFormat"></td>
+        </tr>
+        <tr data-hide-if-empty="accessibilityNeeds">
+          <td class="label-cell">Accessibility Needs</td>
+          <td class="value-cell" data-field="accessibilityNeeds"></td>
+        </tr>
+        <tr data-hide-if-empty="accessibilityDetails">
+          <td class="label-cell">Accessibility Details</td>
+          <td class="value-cell" data-field="accessibilityDetails"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef6"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 6 &mdash; Implementation</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7: BUDGET & TIMELINE                                   -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-7">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef7"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef7"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">7</span>
+        Budget &amp; Timeline
+      </div>
+
+      <div class="sub-section-header">Budget Summary</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Total Project Cost</td>
+          <td class="value-cell" style="font-weight: 700; color: #2E8B57; font-size: 11pt;" data-field="totalCost"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">J-USE Request</td>
+          <td class="value-cell" data-field="juseRequest"></td>
+        </tr>
+        <tr>
+          <td class="label-cell">Other Funding Sources</td>
+          <td class="value-cell" data-field="otherFunding"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Budget Breakdown</div>
+      <div class="description-block" style="color: #555;">Detailed line-item budget breakdown has been submitted as a separate Excel file. Please refer to the uploaded Budget Breakdown document in the Supporting Documents section for category-level amounts, justifications, and funding frequency details.</div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Project Timeline</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="startDate">
+          <td class="label-cell">Proposed Start Date</td>
+          <td class="value-cell" data-field="startDate"></td>
+        </tr>
+        <tr data-hide-if-empty="endDate">
+          <td class="label-cell">Proposed End Date</td>
+          <td class="value-cell" data-field="endDate"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef7"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 7 &mdash; Budget &amp; Timeline</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 8: IUCN NbCS CRITERIA & TNA                            -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-8">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef8"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef8"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">8</span>
+        IUCN NbCS Criteria
+      </div>
+
+      <div class="sub-section-header">NbCS Standard Criteria Responses</div>
+      <div data-field="iucnCriteria">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Priority Needs Assessment</div>
+      <table class="detail-grid">
+        <tr>
+          <td class="label-cell">Priority Needs</td>
+          <td class="value-cell" data-field="priorityNeedsSection8"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Technical Needs Assessment (TNA) Matrix</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Competency Area</th>
+            <th style="width: 50%;">Self-Assessed Level</th>
+          </tr>
+        </thead>
+        <tbody data-field="tnaMatrix">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Priority Capacity Building Needs (rendered by pdf-sections.js from capacityBuildingNeeds array or string) -->
+    <div class="section">
+      <div class="sub-section-header">Priority Capacity Building Needs</div>
+      <div data-field="capacityBuildingNeeds">
+      </div>
+    </div>
+
+    <!-- Preferred Learning Formats (rendered by pdf-sections.js from preferredLearningFormats array or string) -->
+    <div class="section">
+      <div class="sub-section-header">Preferred Learning Formats</div>
+      <div data-field="preferredLearningFormats">
+      </div>
+    </div>
+
+    <!-- Accessibility Accommodations for capacity building -->
+    <div class="section">
+      <div class="sub-section-header">Accessibility Accommodations</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="capacityAccessibilityNeeds">
+          <td class="label-cell">Accessibility Needs</td>
+          <td class="value-cell" data-field="capacityAccessibilityNeeds"></td>
+        </tr>
+        <tr data-hide-if-empty="capacityAccessibilityDetails">
+          <td class="label-cell">Accommodation Details</td>
+          <td class="value-cell" data-field="capacityAccessibilityDetails"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef8"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 8 &mdash; IUCN NbCS Criteria</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 9: SUPPORTING DOCUMENTS                                 -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-9">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef9"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef9"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">9</span>
+        Supporting Documents
+      </div>
+      <p style="font-size: 9pt; color: #666666; margin-bottom: 12px;">The following documents were submitted with this application.</p>
+
+      <div data-field="documents">
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef9"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 9 &mdash; Supporting Documents</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 10: DECLARATIONS & AUTHORIZATION                        -->
+  <!-- ============================================================ -->
+  <div class="page page-break" id="section-10">
+
+    <div class="doc-header">
+      <div>
+        <img src="https://res.cloudinary.com/dflgxstih/image/upload/v1774363916/logo_lockup_2_1_y8avql.png" alt="EFJ Logo" class="doc-header-logo" />
+      </div>
+      <div class="doc-header-text">
+        <h1>J-USE REOI 2026 &mdash; Full Application</h1>
+        <p>Reference: <span data-field="headerRef10"></span></p>
+      </div>
+    </div>
+
+    <div class="ref-badge">Reference: <span data-field="badgeRef10"></span></div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        Declarations &amp; Authorization
+      </div>
+      <p style="font-size: 9pt; color: #666666; margin-bottom: 14px;">The applicant has confirmed the following declarations as part of the submission process.</p>
+
+      <div class="sub-section-header">Applicant Declarations</div>
+
+      <div class="declaration-list">
+        <div class="declaration-item">
+          <div class="declaration-checkbox" data-field="declaration1"></div>
+          <div>I confirm that the information provided is accurate and that our organization has the capacity to implement this project within 12 months.</div>
+        </div>
+
+        <div class="declaration-item">
+          <div class="declaration-checkbox" data-field="declaration2"></div>
+          <div>I understand that false information may result in disqualification from the J-USE programme.</div>
+        </div>
+
+        <div class="declaration-item">
+          <div class="declaration-checkbox" data-field="declaration3"></div>
+          <div>I consent to EFJ storing and processing this data for evaluation purposes and sharing with funding partners (J-USE, Government of Canada).</div>
+        </div>
+
+        <div class="declaration-item">
+          <div class="declaration-checkbox" data-field="declaration4"></div>
+          <div>I commit to participating in J-USE capacity building activities if selected, including the J-USE capacity building programme.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sub-section-header">Authorized Representative</div>
+      <table class="detail-grid">
+        <tr data-hide-if-empty="authName">
+          <td class="label-cell">Full Name</td>
+          <td class="value-cell" style="font-weight: 600;" data-field="authName"></td>
+        </tr>
+        <tr data-hide-if-empty="authTitle">
+          <td class="label-cell">Title / Position</td>
+          <td class="value-cell" data-field="authTitle"></td>
+        </tr>
+        <tr data-hide-if-empty="authEmail">
+          <td class="label-cell">Email</td>
+          <td class="value-cell" data-field="authEmail"></td>
+        </tr>
+        <tr data-hide-if-empty="authPhone">
+          <td class="label-cell">Phone</td>
+          <td class="value-cell" data-field="authPhone"></td>
+        </tr>
+        <tr data-hide-if-empty="authDate">
+          <td class="label-cell">Authorization Date</td>
+          <td class="value-cell" data-field="authDate"></td>
+        </tr>
+        <tr data-hide-if-empty="authIpAddress">
+          <td class="label-cell">IP Address</td>
+          <td class="value-cell" data-field="authIpAddress"></td>
+        </tr>
+        <tr data-hide-if-empty="digitalSignature">
+          <td class="label-cell">Digital Signature</td>
+          <td class="value-cell" data-field="digitalSignature"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section" id="additional-comments-section" style="display: none;">
+      <div class="sub-section-header">Additional Comments</div>
+      <div class="description-block" data-field="additionalComments"></div>
+    </div>
+
+    <!-- CONFIDENTIALITY NOTICE -->
+    <div class="confidentiality-notice">
+      This document is confidential and intended solely for the review panel of the J-USE Programme &mdash; Environmental Foundation of Jamaica
+    </div>
+
+    <div class="timestamp" data-field="generationTimestamp">
+      Generated on — at —
+    </div>
+
+    <div class="page-footer">
+      <span>Reference: <span data-field="footerRef10"></span></span>
+      <span class="confidential">Confidential</span>
+      <span>Section 10 &mdash; Declarations &amp; Authorization</span>
+    </div>
+  </div>
+
+
+  <!-- pdf-core.js: helpers (v, n, setField, setRawField, setHTML) + renderFullApplicationPDF() entry point -->
+  <script src="pdf-core.js"></script>
+  <!-- pdf-sections.js: populatePDFSections() — field population for all 10 sections -->
+  <script src="pdf-sections.js"></script>
+  <!-- pdf-tables.js: renderPDFTables() — dynamic table/list rendering -->
+  <script src="pdf-tables.js"></script>
+
+  <!-- html2pdf.js: in-browser HTML→PDF conversion (used by submission flow) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!--
+    PDF Bridge — receives postMessage({ type: 'render', data }) from the
+    parent window (the application form), populates the template, converts
+    the rendered page to a PDF, and posts the base64-encoded PDF back.
+  -->
+  <script>
+    /*
+     * Camera-ready PDF bridge.
+     *
+     * The renderer template was authored for the BROWSER'S NATIVE print
+     * engine (210mm × 297mm pages, @media print rules, real CSS pagination).
+     * html2pdf.js rasterized the whole DOM and produced grey-filler artefacts.
+     * We now use the browser's print pipeline — exactly the same engine that
+     * powers Chrome's "Save as PDF". Output is camera-ready: real text,
+     * vector graphics, perfect page breaks, ~200–500 KB instead of 6 MB.
+     *
+     * Flow:
+     *   parent → postMessage({ type: 'render', data })  → populate DOM
+     *   parent → postMessage({ type: 'print' })          → window.print()
+     *
+     * The 'print' step shows the system print dialog. The user clicks
+     * "Save as PDF" → file lands in their Downloads. The same file is then
+     * re-attached to the form for upload (so applicant + grants emails get
+     * the identical camera-ready PDF, with one camera-ready copy on the
+     * applicant's disk for redundancy).
+     */
+    window.addEventListener('message', function (event) {
+      var source = event.source;
+      if (!event.data) return;
+
+      if (event.data.type === 'render') {
+        try {
+          renderFullApplicationPDF(event.data.data || {});
+          // Tell the parent we're populated and ready for either print or
+          // a deferred trigger.
+          setTimeout(function () {
+            source.postMessage({ type: 'rendered' }, '*');
+          }, 300);
+        } catch (err) {
+          source.postMessage({ type: 'rendered', error: String(err) }, '*');
+        }
+        return;
+      }
+
+      if (event.data.type === 'print') {
+        try {
+          // Use the browser's native print engine. The user sees the system
+          // print dialog — they should choose "Save as PDF" to get a
+          // camera-ready file. After the dialog closes we tell the parent.
+          var afterPrint = function () {
+            window.removeEventListener('afterprint', afterPrint);
+            source.postMessage({ type: 'printDone' }, '*');
+          };
+          window.addEventListener('afterprint', afterPrint);
+          window.focus();
+          window.print();
+        } catch (err) {
+          source.postMessage({ type: 'printDone', error: String(err) }, '*');
+        }
+        return;
+      }
+    });
+  </script>
+
+</body>
+</html>

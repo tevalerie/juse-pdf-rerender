@@ -1,0 +1,367 @@
+{
+  "regType": {
+    "private-ltd": "Private Limited Company (Ltd.)",
+    "private-other": "Private Other (Partnership, Sole Trader, etc.)",
+    "ngo-company": "Non-Governmental Organization (NGO - Company Limited by Guarantee)",
+    "ngo-society": "NGO / Civil Society (Registered under Societies Act / Trust)",
+    "cbo-informal": "Community-Based Organization (CBO - Informal)",
+    "cooperative": "Cooperative / Association",
+    "faith-based": "Faith-Based Organization",
+    "academic-university": "Academic / Research Institution",
+    "government": "Government Ministry / Department / Agency",
+    "soe": "State-Owned Enterprise (SOE)",
+    "other": "Other (please specify)"
+  },
+  "orgCategory": {
+    "ngo": "Non-Governmental Organization (NGO)",
+    "cbo": "Community-Based Organization (CBO)",
+    "private": "Private Sector / Corporate / Business / Startups",
+    "umbrella": "Umbrella Organization",
+    "professional": "Professional Association",
+    "social_enterprise": "Social Enterprise",
+    "academic": "Academic / Research Institution",
+    "government": "Government Agency",
+    "soe": "State-Owned Enterprise (SOE)",
+    "cooperative": "Cooperative / Association",
+    "faith": "Faith-Based Organization",
+    "youth": "Youth-Led Organization",
+    "women": "Women-Led Organization",
+    "other": "Other"
+  },
+  "orgParish": {
+    "kingston": "Kingston",
+    "st-andrew": "St. Andrew",
+    "st-catherine": "St. Catherine",
+    "clarendon": "Clarendon",
+    "manchester": "Manchester",
+    "st-elizabeth": "St. Elizabeth",
+    "westmoreland": "Westmoreland",
+    "hanover": "Hanover",
+    "st-james": "St. James",
+    "trelawny": "Trelawny",
+    "st-ann": "St. Ann",
+    "st-mary": "St. Mary",
+    "portland": "Portland",
+    "st-thomas": "St. Thomas"
+  },
+  "contactGender": {
+    "M": "Male",
+    "F": "Female"
+  },
+  "parish": {
+    "kingston": "Kingston and St. Andrew",
+    "st-catherine": "St. Catherine",
+    "clarendon": "Clarendon",
+    "st-mary": "St. Mary",
+    "st-thomas": "St. Thomas",
+    "westmoreland": "Westmoreland",
+    "hanover": "Hanover",
+    "none": "None of the above (other parish)"
+  },
+  "classification": {
+    "urban": "City or Town (built-up area)",
+    "suburban": "Residential neighbourhood",
+    "peri-urban": "Community settlement area",
+    "coastal": "Near the sea, beach, or harbour",
+    "not_sure": "Not sure"
+  },
+  "benefitIntensity": {
+    "high": "High (direct + sustained)",
+    "medium": "Medium (indirect or partial)",
+    "low": "Low (minor benefit)"
+  },
+  "benefitTiming": {
+    "immediate": "Immediate (0–12 months)",
+    "medium_term": "Medium-term (1–3 years)",
+    "long_term": "Long-term (3+ years)"
+  },
+  "marketCustomer": {
+    "direct_consumers": "Direct Consumers (individual buyers)",
+    "retailers": "Retailers/Wholesalers",
+    "hotels_restaurants": "Hotels/Restaurants",
+    "government": "Government Agency",
+    "corporate": "Corporate Buyer",
+    "carbon_market": "Carbon Market Buyer",
+    "other_market": "Other (specify in pathway rationale)"
+  },
+  "marketRevenue": {
+    "under_500k": "Under $500,000",
+    "500k_1m": "$500,000 - $1,000,000",
+    "1m_5m": "$1,000,000 - $5,000,000",
+    "5m_10m": "$5,000,000 - $10,000,000",
+    "over_10m": "Over $10,000,000"
+  },
+  "marketOMCoverage": {
+    "yes": "Yes - Full coverage expected within 5 years",
+    "partial": "Partial (50-80%) - Some ongoing support needed",
+    "no": "No - Revenues won't cover Operations and Management (O&M)",
+    "uncertain": "Uncertain - Need to develop projections"
+  },
+  "hybridMarketPct": {
+    "20_40": "20-40% - Mostly public benefit",
+    "40_60": "40-60% - Balanced model",
+    "60_80": "60-80% - Primarily market-driven"
+  },
+  "hybridAnchorPartner": {
+    "yes_confirmed": "Yes - Written commitment obtained",
+    "yes_verbal": "Yes - Verbal agreement in place",
+    "in_discussion": "In active discussion",
+    "not_yet": "Not yet approached"
+  },
+  "publicAgencyAdopt": {
+    "yes_committed": "Yes - Written commitment from agency",
+    "yes_verbal": "Yes - Verbal indication of support",
+    "in_discussion": "In discussion with potential agency",
+    "not_yet": "Not yet approached"
+  },
+  "publicNDCAlign": {
+    "high": "High - Directly addresses stated priority areas",
+    "medium": "Medium - Contributes to national objectives",
+    "moderate": "Moderate - Indirect contribution",
+    "uncertain": "Uncertain - Need guidance on alignment"
+  },
+  "scalingPotential": {
+    "high": "High - Ready for immediate replication in other communities",
+    "medium": "Medium - Requires minor adaptation for other contexts",
+    "moderate": "Moderate - Requires significant adaptation and resources",
+    "limited": "Limited - Pilot stage, scaling path needs development"
+  },
+  "maintenanceDuration": {
+    "1yr": "Less than 1 year",
+    "1-3yr": "1-3 years",
+    "3-5yr": "3-5 years",
+    "5plus": "5+ years",
+    "perpetual": "Perpetual (self-sustaining)"
+  },
+  "accessibilityNeeds": {
+    "no": "No accommodations needed at this time",
+    "yes_online": "Yes - for online/virtual activities",
+    "yes_offline": "Yes - for in-person activities",
+    "yes_both": "Yes - for both online and in-person activities"
+  },
+  "enablerStatus_${val}": {
+    "have": "Already Have",
+    "need": "Still Need"
+  },
+  "bankAccount": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "climateChallenge": {
+    "flooding": "Flooding & Storm Surge",
+    "heat": "Urban Heat & Drought",
+    "coastal_erosion": "Coastal Erosion & Sea Level Rise",
+    "landslides": "Landslides & Slope Failure",
+    "food_water": "Food Insecurity & Water Scarcity",
+    "water_quality": "Water Quality & Sanitation",
+    "not_sure": "Not sure"
+  },
+  "hazards": {
+    "flooding": "Flooding (Pluvial/Fluvial)",
+    "heat": "Extreme Heat / Urban Heat Island",
+    "landslide": "Landslide / Slope Instability",
+    "coastal": "Coastal Erosion / Storm Surge",
+    "drought": "Drought / Water Scarcity",
+    "food_security": "Food Security / Supply Chain Disruption",
+    "biodiversity": "Biodiversity Loss",
+    "water_quality": "Water Quality Degradation"
+  },
+  "copingMechanisms": {
+    "no_response": "No formal response",
+    "temporary": "Temporary measures",
+    "relocation": "Relocation",
+    "mutual_aid": "Community mutual aid",
+    "borrowing": "Borrowing / using savings",
+    "traditional": "Local / traditional knowledge",
+    "existing_infrastructure": "Existing infrastructure (insufficient)"
+  },
+  "systemFlows": {
+    "water_management": "Water Management",
+    "food_supply": "Food Supply Chains",
+    "waste": "Waste Management",
+    "energy": "Energy Systems",
+    "land_use": "Land Use Planning",
+    "coastal_zone": "Coastal Zone Management",
+    "livelihoods": "Livelihood Systems",
+    "social_equity": "Social Equity",
+    "governance": "Governance",
+    "finance": "Finance Flows",
+    "knowledge": "Knowledge Systems",
+    "health": "Public Health"
+  },
+  "nbcsIntervention": {
+    "constructed_wetland": "Constructed Wetland",
+    "bioswale": "Bioswale / Rain Garden",
+    "green_corridor": "Green Corridor / Riparian Buffer",
+    "permeable_pavement": "Permeable Pavement",
+    "rainwater_harvesting": "Rainwater Harvesting System",
+    "urban_forest": "Urban Forest / Tree Canopy",
+    "green_roof": "Green Roof / Living Wall",
+    "community_park": "Community Park Restoration",
+    "street_tree": "Street Tree Planting",
+    "green_facade": "Green Facade / Vertical Garden",
+    "community_garden": "Community Garden / Food Forest",
+    "urban_agroforestry": "Urban Agroforestry",
+    "rooftop_garden": "Rooftop Food Garden",
+    "climate_smart_farm": "Peri-Urban Climate-Smart Farm",
+    "school_garden": "School Garden / Education Hub",
+    "hydroponics": "Hydroponics / Aquaponics",
+    "mangrove": "Mangrove Restoration",
+    "coral_reef": "Coral Reef Restoration",
+    "seagrass": "Seagrass Restoration",
+    "beach_nourishment": "Beach Nourishment with Vegetation",
+    "oyster_reef": "Oyster Reef Restoration",
+    "coastal_wetland": "Coastal Wetland Restoration",
+    "building_rainwater": "Building Rainwater Harvesting",
+    "cool_roof": "Cool Roof / Reflective Surface",
+    "courtyard": "Courtyard / Atrium Garden",
+    "composting": "Community Composting Hub",
+    "wastewater_treatment": "NbCS Wastewater Treatment",
+    "nutrient_cycling": "Nutrient Cycling / Biochar",
+    "stormwater_quality": "Green Infrastructure for Stormwater Quality",
+    "slope_agroforestry": "Agroforestry for Slope Stabilization",
+    "contour_terrace": "Contour Terracing with Vegetation",
+    "vetiver": "Vetiver Grass Systems",
+    "native_slope": "Native Species Slope Planting",
+    "other_nbcs": "Other NbCS Intervention (specify below)"
+  },
+  "housingVulnerability": {
+    "direct": "🟢 Yes — Directly and centrally The project explicitly targets informal settlements or high-risk housing areas where climate hazards directly impact people (e.g., flood-prone communities, coastal settlements, hillside housing).",
+    "partial": "🟡 Partially / Indirectly The project benefits communities where housing vulnerability exists, but this is not the primary focus of the intervention.",
+    "no": "⚪ No — Not a focus The project does not directly address housing or settlement-related vulnerability."
+  },
+  "nbcsSecondary": {
+    "drr_early_warning": "Early Warning Systems",
+    "drr_coastal_protection": "Coastal Protection & Storm Surge Buffering",
+    "drr_flood_mitigation": "Flood Risk Reduction",
+    "drr_landslide_prevention": "Landslide & Slope Failure Prevention",
+    "drr_heat_resilience": "Urban Heat Resilience",
+    "food_local_production": "Local Food Production",
+    "food_nutrition": "Nutrition & Food Access",
+    "food_supply_chain": "Supply Chain Resilience",
+    "food_seed_sovereignty": "Seed Sovereignty & Biodiversity",
+    "health_mental": "Mental Health & Green Space Access",
+    "health_air_quality": "Air Quality Improvement",
+    "health_water_sanitation": "Water Quality & Sanitation",
+    "health_disease": "Vector-Borne Disease Reduction",
+    "livelihoods_green_jobs": "Green Job Creation",
+    "livelihoods_ecotourism": "Eco-Tourism & Recreation",
+    "livelihoods_sustainable": "Sustainable Value Chains",
+    "livelihoods_skill": "Skills Training & Capacity Building",
+    "edu_environmental": "Environmental Education & Awareness",
+    "edu_cultural": "Cultural & Heritage-Based Conservation",
+    "edu_community_governance": "Community-Led Governance & Stewardship",
+    "edu_youth_engagement": "Youth Engagement & Leadership",
+    "edu_digital": "Digital & Data-Driven Monitoring",
+    "circular_waste": "Waste Reduction & Resource Recovery",
+    "circular_organic": "Organic Waste Cycling & Composting",
+    "circular_water": "Water Recycling & Reuse",
+    "circular_material": "Sustainable Materials & Bio-Based Products",
+    "transport_green": "Green Corridors & Active Transport",
+    "transport_urban": "Urban Infrastructure Integration",
+    "transport_logistics": "Climate-Resilient Supply Chains",
+    "digital_iot_sensors": "IoT Environmental Sensors",
+    "digital_ai_prediction": "AI-Driven Climate Prediction Models",
+    "digital_citizen_science": "Citizen Science & Mobile Data Collection",
+    "digital_gis_mapping": "GIS Mapping & Spatial Analysis",
+    "digital_mrv": "MRV Systems (Measurement, Reporting & Verification)",
+    "digital_imms": "IMMS (Integrated Monitoring & Management System)",
+    "digital_drones": "Drone & Remote Sensing Monitoring",
+    "digital_dashboard": "Data Dashboards & Decision Support",
+    "secondary_other": "Other — please describe below"
+  },
+  "targetGroups": {
+    "women": "Women - including female-headed households",
+    "youth": "Youth (18-35) - young adults seeking opportunities",
+    "elderly": "Elderly (60+) - older adults vulnerable to climate impacts",
+    "low_income": "Low-Income Communities - economically disadvantaged areas",
+    "farmers": "Urban & Peri-Urban Food Producers",
+    "fisherfolk": "Fisherfolk - those dependent on marine resources",
+    "disabled": "Persons with Disabilities - physical, sensory, or cognitive",
+    "other": "Other - specify below"
+  },
+  "genderConsiderations": {
+    "women_led": "Women-led or women-majority project",
+    "targeted_women": "Targeted activities for women",
+    "equal_access": "Equal access to project benefits",
+    "gender_analysis": "Gender analysis conducted",
+    "gbv_consideration": "Gender-based violence (GBV) risk considered"
+  },
+  "socialBenefits": {
+    "jobs": "Jobs Created",
+    "training": "Skills Training",
+    "women_livelihood": "Women's Livelihood",
+    "youth_employment": "Youth Employment",
+    "nutrition": "Improved Nutrition",
+    "community_ownership": "Community Ownership",
+    "cultural": "Cultural Heritage",
+    "accessibility": "Universal Design",
+    "health": "Public Health",
+    "cohesion": "Social Cohesion",
+    "gbv": "GBV Risk Reduction",
+    "financial": "Financial Inclusion"
+  },
+  "pathway": {
+    "market": "Revenue-Generating Model — Project will generate revenue from sales, fees, or services",
+    "hybrid": "Blended Model — Mix of revenue generation and community benefits",
+    "public": "Community Benefit Model — Primary benefits serve the broader community (no direct revenue)"
+  },
+  "hybridPublicGoods": {
+    "climate": "Climate Adaptation / Risk Reduction",
+    "biodiversity": "Biodiversity Conservation",
+    "livelihoods": "Livelihoods / Poverty Reduction",
+    "health": "Public Health / Heat Mitigation",
+    "water": "Water Security / Quality",
+    "equity": "Social Equity / Inclusion"
+  },
+  "publicBeneficiaries": {
+    "low_income": "Low-Income Communities",
+    "coastal": "Coastal Communities",
+    "urban": "Urban Residents",
+    "farmers": "Urban & Peri-Urban Food Producers",
+    "fisherfolk": "Fisherfolk",
+    "general": "General Public / City-wide"
+  },
+  "enablers": {
+    "policy": "Policy/Regulatory Support",
+    "blended_finance": "Blended Finance Structure",
+    "technical_capacity": "Technical Capacity Building",
+    "community_governance": "Community Governance Model",
+    "market_platform": "Market Aggregation Platform",
+    "data_systems": "Data/Knowledge Systems",
+    "fast_track": "Fast-Track Permitting",
+    "insurance": "Climate Risk Insurance",
+    "certification": "NbCS Certification Standard",
+    "south_south": "South-South Knowledge Exchange"
+  },
+  "maintenanceFunding": {
+    "community": "Community contributions / membership fees",
+    "government": "Local government budget allocation",
+    "revenue": "Revenue from project outputs (e.g., produce sales)",
+    "partner": "Partner organization ongoing support",
+    "grant": "Future grant funding applications",
+    "self": "Self-sustaining (no external funding needed)"
+  },
+  "priorityNeeds": {
+    "nbcs_design": "NbCS Design Principles & IUCN Criteria",
+    "climate_dim": "Climate dimension integration (mitigation, adaptation, resilience)",
+    "value_pathway": "Value Proposition selection & business model development",
+    "budgeting": "Results-based budgeting & financial management",
+    "me_framework": "M&E framework development with gender-sensitive indicators",
+    "digital_tools": "Digital/AI tools for NbCS (sensors, data analysis, modeling)",
+    "stakeholder": "Stakeholder engagement & participatory design methods",
+    "gsi_strategies": "Gender & social inclusion strategies for NbCS",
+    "risk_mgmt": "Risk management & adaptive implementation",
+    "grant_compliance": "Grant compliance & reporting (GAC, EFJ standards)",
+    "sustainability": "Long-term sustainability & governance planning"
+  },
+  "learningFormat": {
+    "live_virtual": "Live virtual workshops",
+    "recorded": "Pre-recorded tutorials",
+    "case_studies": "Interactive case studies",
+    "one_on_one": "One-on-one advisory",
+    "peer_learning": "Peer learning circles",
+    "in_person": "In-person workshops",
+    "written_guides": "Written guides & toolkits"
+  }
+}
