@@ -167,6 +167,15 @@ function standaloneLabelize(data) {
   if (!out.generationDate && out.submission_date) out.generationDate = out.submission_date;
   if (!out.generationTime && out.submission_time) out.generationTime = out.submission_time;
 
+  // ---- 'Priority Capacity Building Needs' sub-section reads
+  //      data.capacityBuildingNeeds, but the form never captures that
+  //      field — only sample data populates it. Real applicants' priority
+  //      selections live in data.priorityNeeds. Alias the two so the
+  //      sub-section renders the actual user-entered priorities. -----
+  if (!out.capacityBuildingNeeds && out.priorityNeeds) {
+    out.capacityBuildingNeeds = out.priorityNeeds;
+  }
+
   // ---- Benefit traceability — populate the empty 'verification' column.
   // The form never captured a per-row verification field, but each outcome
   // metric has a 'how_measured' (outcomeMeasured) describing exactly how
