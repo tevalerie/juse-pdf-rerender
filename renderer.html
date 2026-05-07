@@ -1848,7 +1848,18 @@
 
       if (event.data.type === 'render') {
         try {
-          renderFullApplicationPDF(event.data.data || {});
+          var renderData = event.data.data || {};
+          renderFullApplicationPDF(renderData);
+
+          // Set document.title so Chrome's PDF engine bakes the original
+          // historical Title into the saved PDF metadata. Matches the
+          // string Chrome wrote into the production PDFs at submission
+          // time ("J-USE REOI Application 2026") so re-renders look
+          // byte-equivalent in Cmd+I metadata. Note: this only affects
+          // Chrome/Skia output; if the user routes through macOS's Quartz
+          // engine, Quartz overrides Title with the parent app name.
+          document.title = 'J-USE REOI Application 2026';
+
           // Tell the parent we're populated and ready for either print or
           // a deferred trigger.
           setTimeout(function () {

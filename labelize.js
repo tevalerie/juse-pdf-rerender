@@ -164,17 +164,13 @@ function standaloneLabelize(data) {
   if (!out.referenceNumber && out.ref_number) out.referenceNumber = out.ref_number;
 
   // Submission date/time — derive from submittedAt for renderer cover/headers.
+  // This is the "Submitted on …" line, distinct from the footer "Generated on …".
   // The renderer reads data.submission_date / data.submission_time separately;
   // without this the cover + page headers render 'Submitted Not provided at
   // Not provided' even when submittedAt is populated.
   (function () {
     if (out.submission_date && out.submission_time) return;
-    // Prefer pdfGeneratedAt (when the PDF file was created in Drive ≈ when
-    // the original Save-PDF click happened) over submittedAt (the Submit-
-    // click moment, several minutes earlier). Falls back to submittedAt
-    // when pdfGeneratedAt isn't available (older submissions or Drive
-    // lookup failed).
-    var iso = out.pdfGeneratedAt || out.submittedAt || new Date().toISOString();
+    var iso = out.submittedAt || new Date().toISOString();
     var d;
     try { d = new Date(iso); } catch (e) { d = new Date(); }
     if (isNaN(d.getTime())) d = new Date();
@@ -193,10 +189,40 @@ function standaloneLabelize(data) {
     }
   })();
 
-  // Footer 'Generated on …' should reflect the submission time, not the
-  // wall-clock time of this re-render. Pin it to submission_date/time.
-  if (!out.generationDate && out.submission_date) out.generationDate = out.submission_date;
-  if (!out.generationTime && out.submission_time) out.generationTime = out.submission_time;
+  // Footer 'Generated on …' — use the highest-fidelity timestamp available so
+  // re-renders reproduce the ORIGINAL PDF footer byte-for-byte.
+  // Precedence:
+  //   1. generationTimestamp        — captured by the form at the exact moment
+  //                                   the user opened the print dialog (Task C,
+  //                                   going-forward submissions)
+  //   2. manualGenerationTimestamp  — typed into the standalone re-render tool
+  //                                   by the user, read off the original PDF's
+  //                                   footer (Task B, the 4 historical PDFs)
+  //   3. pdfGeneratedAt             — Drive file dateCreated (within seconds of
+  //                                   the original Save-PDF click)
+  //   4. submittedAt                — Submit-click moment (drift of minutes)
+  //   5. now                        — last resort
+  (function () {
+    if (out.generationDate && out.generationTime) return;
+    var iso = out.generationTimestamp
+           || out.manualGenerationTimestamp
+           || out.pdfGeneratedAt
+           || out.submittedAt
+           || new Date().toISOString();
+    var d;
+    try { d = new Date(iso); } catch (e) { d = new Date(); }
+    if (isNaN(d.getTime())) d = new Date();
+    if (!out.generationDate) {
+      out.generationDate = d.toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Jamaica'
+      });
+    }
+    if (!out.generationTime) {
+      out.generationTime = d.toLocaleTimeString('en-US', {
+        hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Jamaica'
+      });
+    }
+  })();
 
   // ---- 'Priority Capacity Building Needs' sub-section reads
   //      data.capacityBuildingNeeds, but the form never captures that

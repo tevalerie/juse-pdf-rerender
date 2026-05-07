@@ -128,6 +128,21 @@
         <p style="font-size: 0.78rem; color: #777; margin: 8px 0 0;">Read-only call to the Apps Script rebuild endpoint. Does not touch the production submission counter, doPost URL, Sheet writes, or emails.</p>
       </div>
 
+      <!-- Manual generation-time override — for the 4 historical PDFs (000005-000008)
+           submitted before the form started capturing generationTimestamp. Read the
+           "Generated on …" line off the bottom of the original PDF and type it in
+           here; the re-render footer will reproduce that exact wall-clock time
+           (Jamaica TZ). Going-forward submissions ignore this field — they carry
+           their own generationTimestamp captured at print-dialog-open time. -->
+      <div style="background: #fff8e1; border-left: 4px solid #f5b400; padding: 12px 16px; border-radius: 6px; margin-bottom: 14px;">
+        <strong style="color: #6b4d00;">⏱ Original "Generated on …" time (optional override)</strong>
+        <p style="margin: 6px 0 10px; font-size: 0.85rem; color: #5a4400;">Only needed for historical submissions (JUSE-2026-000005 … 000008). Read the date + time off the original PDF's footer and enter it as Jamaica local time. Leave blank for any submission rendered after Task C went live — the form bakes in its own timestamp.</p>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <input type="datetime-local" id="manualGenInput" style="flex: 1; min-width: 220px; padding: 10px 12px; border: 2px solid #f5d76e; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px;" />
+          <button type="button" class="btn btn-secondary" id="clearManualGenBtn" style="padding: 10px 14px;">Clear</button>
+        </div>
+      </div>
+
       <!-- Or paste / drop JSON -->
       <p style="margin: 0 0 8px; font-size: 0.92rem; color: #1a4a2e;"><strong>B. Or paste the JSON</strong> from the Sheet's <code>Full Form Data (JSON)</code> column / PocketBase record:</p>
       <textarea id="jsonInput" placeholder='Paste JSON here, e.g.:&#10;{&#10;  "orgName": "Caribbean Eco-Resorts Ltd.",&#10;  "pathway": "hybrid",&#10;  "genderConsiderations": ["women_led", "gender_analysis"],&#10;  ...&#10;}'></textarea>
@@ -176,8 +191,29 @@
       dump:     document.getElementById('enrichedDump'),
       frame:    document.getElementById('rendererFrame'),
       refInput: document.getElementById('refInput'),
-      fetchBtn: document.getElementById('fetchBtn')
+      fetchBtn: document.getElementById('fetchBtn'),
+      manualGen: document.getElementById('manualGenInput'),
+      clearManualGen: document.getElementById('clearManualGenBtn')
     };
+
+    // Convert a <input type="datetime-local"> value (interpreted as Jamaica
+    // local wall-clock time) into a UTC ISO string. Jamaica is UTC-5
+    // year-round (no DST), so appending "-05:00" anchors the parse.
+    // Returns '' for blank/invalid input.
+    function manualGenToISO(local) {
+      var v = (local || '').trim();
+      if (!v) return '';
+      // local looks like "2026-05-05T16:29" — pad seconds + timezone
+      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(v)) return '';
+      var withSec = v.length === 16 ? v + ':00' : v;
+      var d = new Date(withSec + '-05:00');
+      if (isNaN(d.getTime())) return '';
+      return d.toISOString();
+    }
+
+    els.clearManualGen.addEventListener('click', function () {
+      els.manualGen.value = '';
+    });
 
     // --- Fetch by reference number ---
     els.fetchBtn.addEventListener('click', async function () {
@@ -253,6 +289,13 @@
       var data;
       try { data = JSON.parse(raw); }
       catch (e) { setStatus('Invalid JSON: ' + e.message, 'err'); return; }
+
+      // Inject the manual "Generated on …" override (Task B) if the user
+      // typed one in. Labelize prefers the form-captured generationTimestamp
+      // when present; this manual value covers historical submissions that
+      // pre-date the form-side capture.
+      var manualISO = manualGenToISO(els.manualGen.value);
+      if (manualISO) data.manualGenerationTimestamp = manualISO;
 
       // Apply standalone labelize using the bundled labelDict
       var enriched;
