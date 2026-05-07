@@ -136,6 +136,29 @@ function standaloneLabelize(data) {
     });
   }
 
+  // ---- Reverse-map pathway and housingVulnerability back to raw codes.
+  //      Some submissions (e.g. JUSE-2026-000008) were submitted while the
+  //      OLDER form had pathway/housingVulnerability in its labelize
+  //      allowlist, so the Sheet stores the labelized strings instead of
+  //      raw codes. The renderer's own labelizer expects exact-match raw
+  //      codes ('market'/'hybrid'/'public', 'direct'/'partial'/'no'); long
+  //      labels fall through and render as 'Not provided'.
+  //      Convert labels back to codes when needed so the renderer succeeds. -----
+  (function () {
+    var pw = String(out.pathway || '').toLowerCase();
+    if (pw && pw !== 'market' && pw !== 'hybrid' && pw !== 'public') {
+      if (pw.indexOf('revenue-generating') >= 0 || pw.indexOf('revenue generating') >= 0) out.pathway = 'market';
+      else if (pw.indexOf('blended') >= 0 || pw.indexOf('hybrid') >= 0) out.pathway = 'hybrid';
+      else if (pw.indexOf('community benefit') >= 0 || pw.indexOf('public goods') >= 0 || pw.indexOf('public good') >= 0) out.pathway = 'public';
+    }
+    var hv = String(out.housingVulnerability || '').toLowerCase();
+    if (hv && hv !== 'direct' && hv !== 'partial' && hv !== 'no') {
+      if (hv.indexOf('partial') >= 0 || hv.indexOf('indirect') >= 0) out.housingVulnerability = 'partial';
+      else if (hv.indexOf('direct') >= 0) out.housingVulnerability = 'direct';
+      else if (hv.indexOf('not a focus') >= 0 || hv.indexOf('no —') >= 0 || /^no\b/.test(hv)) out.housingVulnerability = 'no';
+    }
+  })();
+
   // Reference number — accept either ref_number or referenceNumber
   if (!out.ref_number && out.referenceNumber) out.ref_number = out.referenceNumber;
   if (!out.referenceNumber && out.ref_number) out.referenceNumber = out.ref_number;
