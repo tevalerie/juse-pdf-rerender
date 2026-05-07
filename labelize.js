@@ -169,7 +169,12 @@ function standaloneLabelize(data) {
   // Not provided' even when submittedAt is populated.
   (function () {
     if (out.submission_date && out.submission_time) return;
-    var iso = out.submittedAt || new Date().toISOString();
+    // Prefer pdfGeneratedAt (when the PDF file was created in Drive ≈ when
+    // the original Save-PDF click happened) over submittedAt (the Submit-
+    // click moment, several minutes earlier). Falls back to submittedAt
+    // when pdfGeneratedAt isn't available (older submissions or Drive
+    // lookup failed).
+    var iso = out.pdfGeneratedAt || out.submittedAt || new Date().toISOString();
     var d;
     try { d = new Date(iso); } catch (e) { d = new Date(); }
     if (isNaN(d.getTime())) d = new Date();
