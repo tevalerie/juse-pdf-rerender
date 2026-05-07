@@ -34,6 +34,10 @@
       margin: 0 auto;
       position: relative;
       background-color: #ffffff;
+      /* Flex column so .page-footer (with margin-top: auto) reliably
+         settles to the bottom of the page even when content is short. */
+      display: flex;
+      flex-direction: column;
     }
 
     .page-break {
@@ -428,12 +432,13 @@
 
     /* ========== FOOTER ========== */
     .page-footer {
-      position: absolute;
-      bottom: 10mm;
-      left: 18mm;
-      right: 18mm;
-      border-top: 1px solid #e0e0e0;
+      /* margin-top: auto pushes the footer to the bottom of the flex
+         column .page container — works for any content length without
+         overlapping. Replaces the previous position: absolute approach
+         which clipped or floated mid-page when content overflowed. */
+      margin-top: auto;
       padding-top: 6px;
+      border-top: 1px solid #e0e0e0;
       display: flex;
       justify-content: space-between;
       font-size: 7pt;
