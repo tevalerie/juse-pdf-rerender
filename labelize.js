@@ -36,9 +36,9 @@ var MULTI_VALUE_FIELDS = [
 var SINGLE_VALUE_FIELDS = [
   'regType', 'orgCategory', 'orgParish', 'parish', 'classification',
   'contactGender', 'marketCustomer', 'marketRevenue', 'marketOMCoverage',
-  'hybridAnchorPartner', 'publicAgencyAdopt', 'publicNDCAlign',
+  'hybridMarketPct', 'hybridAnchorPartner', 'publicAgencyAdopt', 'publicNDCAlign',
   'maintenanceDuration', 'accessibilityNeeds', 'capacityAccessibilityNeeds',
-  'bankAccount'
+  'bankAccount', 'benefitIntensity', 'benefitTiming'
 ];
 
 function getLabelForCode(field, code) {
@@ -161,6 +161,11 @@ function standaloneLabelize(data) {
       });
     }
   })();
+
+  // Footer 'Generated on …' should reflect the submission time, not the
+  // wall-clock time of this re-render. Pin it to submission_date/time.
+  if (!out.generationDate && out.submission_date) out.generationDate = out.submission_date;
+  if (!out.generationTime && out.submission_time) out.generationTime = out.submission_time;
 
   return out;
 }
