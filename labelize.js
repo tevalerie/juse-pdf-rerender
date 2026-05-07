@@ -229,21 +229,32 @@ function standaloneLabelize(data) {
     });
   }
 
-  // ---- Labelize document type codes. The Sheet stores documentType as
-  //      the form's input name ('regCertificate', 'orgCapacity', etc.).
-  //      The renderer uppercases these for display, producing
-  //      'REGCERTIFICATE' etc. Map to friendly section headers. -----
+  // ---- Labelize document type codes + map snake_case → camelCase
+  //      field names. The renderer reads doc.documentType / doc.fileName /
+  //      doc.fileUrl (camelCase). The rebuild endpoint returns the Sheet's
+  //      snake_case columns (file_name, file_url) and the form's input-
+  //      name codes ('regCertificate', 'orgCapacity', etc.). Map both to
+  //      what the renderer expects, using the same friendly labels the
+  //      form's own enrichDataForRenderer used at submit time. -----
   var DOC_TYPE_LABELS = {
-    'letterOfIntent':   'Letter of Intent and Authorisation',
-    'budgetBreakdown':  'Detailed Budget Breakdown',
-    'regCertificate':   'Organisation Registration Certificate',
-    'orgCapacity':      'Organisational Capacity / Previous Work'
+    'regCertificate':   'Registration Certificate',
+    'orgCapacity':      'Organisational Experience / Capacity Statement',
+    'budgetBreakdown':  'Budget Workbook',
+    'letterOfIntent':   'Letter of Intent'
   };
   if (Array.isArray(out.documents)) {
     out.documents = out.documents.map(function (d) {
       var code = d.documentType || '';
       var label = DOC_TYPE_LABELS[code] || code;
-      return Object.assign({}, d, { documentType: label });
+      return {
+        documentType: label,
+        fileName: d.fileName || d.file_name || '',
+        fileUrl:  d.fileUrl  || d.file_url  || '',
+        // preserve snake_case versions too in case anything else reads them
+        file_name: d.file_name || d.fileName || '',
+        file_url:  d.file_url  || d.fileUrl  || '',
+        mime_type: d.mime_type || ''
+      };
     });
   }
 
