@@ -38,7 +38,7 @@ var SINGLE_VALUE_FIELDS = [
   'contactGender', 'marketCustomer', 'marketRevenue', 'marketOMCoverage',
   'hybridMarketPct', 'hybridAnchorPartner', 'publicAgencyAdopt', 'publicNDCAlign',
   'maintenanceDuration', 'accessibilityNeeds', 'capacityAccessibilityNeeds',
-  'bankAccount', 'benefitIntensity', 'benefitTiming'
+  'bankAccount', 'benefitIntensity', 'benefitTiming', 'scalingPotential'
 ];
 
 function getLabelForCode(field, code) {
