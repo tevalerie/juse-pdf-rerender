@@ -91,6 +91,28 @@ function standaloneLabelize(data) {
   if (!out.ref_number && out.referenceNumber) out.ref_number = out.referenceNumber;
   if (!out.referenceNumber && out.ref_number) out.referenceNumber = out.ref_number;
 
+  // Submission date/time — derive from submittedAt for renderer cover/headers.
+  // The renderer reads data.submission_date / data.submission_time separately;
+  // without this the cover + page headers render 'Submitted Not provided at
+  // Not provided' even when submittedAt is populated.
+  (function () {
+    if (out.submission_date && out.submission_time) return;
+    var iso = out.submittedAt || new Date().toISOString();
+    var d;
+    try { d = new Date(iso); } catch (e) { d = new Date(); }
+    if (isNaN(d.getTime())) d = new Date();
+    if (!out.submission_date) {
+      out.submission_date = d.toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
+    if (!out.submission_time) {
+      out.submission_time = d.toLocaleTimeString('en-US', {
+        hour: 'numeric', minute: '2-digit', hour12: true
+      });
+    }
+  })();
+
   return out;
 }
 

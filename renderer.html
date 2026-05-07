@@ -1401,67 +1401,6 @@
         &#9888; No value proposition model selected &mdash; this application does not specify a value model (Revenue-Generating, Hybrid, or Public Goods).
       </div>
 
-    <div class="section">
-      <div class="sub-section-header">Model-Specific Details</div>
-
-      <!-- Market Pathway -->
-      <div class="pathway-box" id="pathway-market" style="display: none;">
-        <div class="pathway-title">Revenue-Generating Model</div>
-        <table class="detail-grid">
-          <tr data-hide-if-empty="marketRevenue">
-            <td class="label-cell">Revenue Model</td>
-            <td class="value-cell" data-field="marketRevenue"></td>
-          </tr>
-          <tr data-hide-if-empty="marketCustomer">
-            <td class="label-cell">Target Customer</td>
-            <td class="value-cell"><span data-field="marketCustomer"></span><span data-field="marketCustomerOther" data-prefix=" — Other: "></span></td>
-          </tr>
-          <tr data-hide-if-empty="marketOMCoverage">
-            <td class="label-cell">O&amp;M Cost Coverage</td>
-            <td class="value-cell" data-field="marketOMCoverage"></td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- Hybrid Pathway -->
-      <div class="pathway-box" id="pathway-hybrid" style="display: none;">
-        <div class="pathway-title">Hybrid Model (Revenue + Public Goods)</div>
-        <table class="detail-grid">
-          <tr data-hide-if-empty="hybridMarketPct">
-            <td class="label-cell">Market Revenue %</td>
-            <td class="value-cell" data-field="hybridMarketPct"></td>
-          </tr>
-          <tr data-hide-if-empty="hybridAnchorPartner">
-            <td class="label-cell">Anchor Partner</td>
-            <td class="value-cell" data-field="hybridAnchorPartner"></td>
-          </tr>
-          <tr>
-            <td class="label-cell">Public Goods</td>
-            <td class="value-cell" data-field="hybridPublicGoods"></td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- Public Good Pathway -->
-      <div class="pathway-box" id="pathway-public" style="display: none;">
-        <div class="pathway-title">Public Goods Model</div>
-        <table class="detail-grid">
-          <tr data-hide-if-empty="publicBeneficiaries">
-            <td class="label-cell">Public Beneficiaries</td>
-            <td class="value-cell" data-field="publicBeneficiaries"></td>
-          </tr>
-          <tr data-hide-if-empty="publicAgencyAdopt">
-            <td class="label-cell">Agency Adoption Plan</td>
-            <td class="value-cell" data-field="publicAgencyAdopt"></td>
-          </tr>
-          <tr data-hide-if-empty="publicNDCAlign">
-            <td class="label-cell">NDC Alignment</td>
-            <td class="value-cell" data-field="publicNDCAlign"></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
     <!-- Pathway Qualifying Questions (conditionally rendered by pdf-sections.js) -->
     <div class="section" id="pathway-qualifying-section" style="display: none;">
       <div class="sub-section-header">Model Qualifying Questions</div>
