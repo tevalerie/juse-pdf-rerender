@@ -87,6 +87,55 @@ function standaloneLabelize(data) {
     if (out[f]) out[f] = labelizeOne(f, out[f]);
   });
 
+  // ---- Date fields — normalize ISO timestamps to "Month D, YYYY" -----
+  // Sheet stores dates as Date objects → JSON.stringify produces ISO
+  // strings like "2026-01-09T05:00:00.000Z", which the renderer just
+  // surfaces verbatim. Format them to match the rest of the document.
+  ['startDate', 'endDate', 'authDate', 'dateOfFormation'].forEach(function (f) {
+    var v = out[f];
+    if (!v) return;
+    // Skip if already in a friendly format (no "T" suggests it's not ISO)
+    if (typeof v === 'string' && v.indexOf('T') < 0 && v.indexOf('-') !== 4) return;
+    try {
+      var d = new Date(v);
+      if (isNaN(d.getTime())) return;
+      out[f] = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch (e) { /* leave as-is on parse failure */ }
+  });
+
+  // ---- TNA reshape — the rebuild endpoint returns tnaMatrix with
+  // friendly labels in competency, but the renderer looks up flat tna_*
+  // fields via Strategy 3 (codes like 'tna_climate'). Reverse-map each
+  // row's label to its tna_X code and populate flat fields, so the
+  // renderer's standard fallback path picks them up. -----
+  if (Array.isArray(out.tnaMatrix) && out.tnaMatrix.length) {
+    var TNA_LABEL_TO_KEY = {
+      'climate science / ndc alignment':       'tna_climate',
+      'grant compliance + reporting':           'tna_grant',
+      'business model design':                  'tna_business',
+      'value chain / market':                   'tna_value',
+      'native species + ecology':               'tna_native',
+      'nbcs design':                            'tna_nbcs_design',
+      'systems thinking':                       'tna_system',
+      'planning + project management':          'tna_planning',
+      'm&e + impact measurement':               'tna_me',
+      'disaggregated data':                     'tna_disagg',
+      'gender-responsive design':               'tna_gender',
+      'community engagement':                   'tna_community',
+      'stakeholder engagement':                 'tna_stakeholder',
+      'digital tools + tech':                   'tna_digital',
+      'budgeting':                              'tna_budget',
+      'co-financing':                           'tna_cofin'
+    };
+    out.tnaMatrix.forEach(function (row) {
+      var label = String(row.competency || row.competency_area || '').toLowerCase().trim();
+      var key = TNA_LABEL_TO_KEY[label];
+      if (!key) return;
+      var score = row.score || row.level || row.value || '';
+      if (score && !out[key]) out[key] = score;
+    });
+  }
+
   // Reference number — accept either ref_number or referenceNumber
   if (!out.ref_number && out.referenceNumber) out.ref_number = out.referenceNumber;
   if (!out.referenceNumber && out.ref_number) out.referenceNumber = out.ref_number;
