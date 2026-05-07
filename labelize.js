@@ -198,6 +198,54 @@ function standaloneLabelize(data) {
   if (!out.capacityBuildingNeeds && out.priorityNeeds) {
     out.capacityBuildingNeeds = out.priorityNeeds;
   }
+  // Same pattern for 'Preferred Learning Formats' — the renderer reads
+  // data.preferredLearningFormats which the form never captures. Alias
+  // from learningFormat (the user-entered multi-select).
+  if (!out.preferredLearningFormats && out.learningFormat) {
+    out.preferredLearningFormats = out.learningFormat;
+  }
+  // Same for 'Accessibility Accommodations' — Section 8 reads
+  // capacityAccessibilityNeeds/Details. Form aliases at submit time but
+  // historical submissions may only have accessibilityNeeds/Details.
+  if (!out.capacityAccessibilityNeeds && out.accessibilityNeeds) {
+    out.capacityAccessibilityNeeds = out.accessibilityNeeds;
+  }
+  if (!out.capacityAccessibilityDetails && out.accessibilityDetails) {
+    out.capacityAccessibilityDetails = out.accessibilityDetails;
+  }
+
+  // ---- Labelize enablersDetail rows. The Sheet stores enabler_name as
+  //      raw codes ('policy', 'technical_capacity', 'data_systems', etc.).
+  //      Renderer surfaces these directly. Look each one up in the
+  //      enablers dict so the PDF reads 'Policy/Regulatory Support' etc. ----
+  if (Array.isArray(out.enablersDetail)) {
+    out.enablersDetail = out.enablersDetail.map(function (e) {
+      var code = e.enablerName || e.enablerLabel || '';
+      var label = getLabelForCode('enablers', code) || code;
+      return Object.assign({}, e, {
+        enablerName:  label,  // friendly name for display
+        enablerLabel: label
+      });
+    });
+  }
+
+  // ---- Labelize document type codes. The Sheet stores documentType as
+  //      the form's input name ('regCertificate', 'orgCapacity', etc.).
+  //      The renderer uppercases these for display, producing
+  //      'REGCERTIFICATE' etc. Map to friendly section headers. -----
+  var DOC_TYPE_LABELS = {
+    'letterOfIntent':   'Letter of Intent and Authorisation',
+    'budgetBreakdown':  'Detailed Budget Breakdown',
+    'regCertificate':   'Organisation Registration Certificate',
+    'orgCapacity':      'Organisational Capacity / Previous Work'
+  };
+  if (Array.isArray(out.documents)) {
+    out.documents = out.documents.map(function (d) {
+      var code = d.documentType || '';
+      var label = DOC_TYPE_LABELS[code] || code;
+      return Object.assign({}, d, { documentType: label });
+    });
+  }
 
   // ---- Benefit traceability — populate the empty 'verification' column.
   // The form never captured a per-row verification field, but each outcome
