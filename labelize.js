@@ -174,13 +174,16 @@ function standaloneLabelize(data) {
     try { d = new Date(iso); } catch (e) { d = new Date(); }
     if (isNaN(d.getTime())) d = new Date();
     if (!out.submission_date) {
+      // Force Jamaica timezone (EST year-round, UTC-5) so the displayed
+      // date matches the applicant's local time regardless of which
+      // browser does the re-render.
       out.submission_date = d.toLocaleDateString('en-US', {
-        year: 'numeric', month: 'long', day: 'numeric'
+        year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Jamaica'
       });
     }
     if (!out.submission_time) {
       out.submission_time = d.toLocaleTimeString('en-US', {
-        hour: 'numeric', minute: '2-digit', hour12: true
+        hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Jamaica'
       });
     }
   })();
