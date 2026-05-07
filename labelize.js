@@ -167,6 +167,25 @@ function standaloneLabelize(data) {
   if (!out.generationDate && out.submission_date) out.generationDate = out.submission_date;
   if (!out.generationTime && out.submission_time) out.generationTime = out.submission_time;
 
+  // ---- Benefit traceability — populate the empty 'verification' column.
+  // The form never captured a per-row verification field, but each outcome
+  // metric has a 'how_measured' (outcomeMeasured) describing exactly how
+  // it'll be verified. Map by outcome name; fall back to index. -----
+  if (Array.isArray(out.benefitTraceability) && Array.isArray(out.outcomeMetrics)) {
+    var byName = {};
+    out.outcomeMetrics.forEach(function (om) {
+      var n = String(om.outcomeName || '').trim();
+      if (n) byName[n] = om.outcomeMeasured || '';
+    });
+    out.benefitTraceability.forEach(function (bt, i) {
+      if (bt.verification) return;
+      var name = String(bt.outcomeLabel || '').trim();
+      var verif = byName[name];
+      if (!verif && out.outcomeMetrics[i]) verif = out.outcomeMetrics[i].outcomeMeasured || '';
+      if (verif) bt.verification = verif;
+    });
+  }
+
   return out;
 }
 
