@@ -153,9 +153,18 @@ function standaloneLabelize(data) {
     }
     var hv = String(out.housingVulnerability || '').toLowerCase();
     if (hv && hv !== 'direct' && hv !== 'partial' && hv !== 'no') {
-      if (hv.indexOf('partial') >= 0 || hv.indexOf('indirect') >= 0) out.housingVulnerability = 'partial';
-      else if (hv.indexOf('direct') >= 0) out.housingVulnerability = 'direct';
-      else if (hv.indexOf('not a focus') >= 0 || hv.indexOf('no —') >= 0 || /^no\b/.test(hv)) out.housingVulnerability = 'no';
+      // Order matters: the "No — Not a focus" label CONTAINS the word
+      // "directly" (in "does not directly address..."), so a naive
+      // `indexOf('direct')` check would mis-tag a "no" answer as "direct".
+      // Disambiguate by emoji prefix first (🟢/🟡/⚪), then by the more
+      // specific "not a focus"/"no —" text, then "partial"/"indirect",
+      // and only fall through to the bare "direct" check last.
+      if (hv.indexOf('🟢') >= 0) out.housingVulnerability = 'direct';
+      else if (hv.indexOf('🟡') >= 0) out.housingVulnerability = 'partial';
+      else if (hv.indexOf('⚪') >= 0) out.housingVulnerability = 'no';
+      else if (hv.indexOf('not a focus') >= 0 || /^no\b/.test(hv) || /\bno\s*—/.test(hv)) out.housingVulnerability = 'no';
+      else if (hv.indexOf('partial') >= 0 || hv.indexOf('indirect') >= 0) out.housingVulnerability = 'partial';
+      else if (/\bdirectly\s+(target|address|impact)/.test(hv) || /^🟢|^yes\b|directly and centrally/.test(hv)) out.housingVulnerability = 'direct';
     }
   })();
 
