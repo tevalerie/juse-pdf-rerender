@@ -30,7 +30,7 @@ var MULTI_VALUE_FIELDS = [
   'nbcsIntervention', 'nbcsSecondary', 'climateChallenge', 'hazards',
   'copingMechanisms', 'targetGroups', 'socialBenefits', 'learningFormat',
   'maintenanceFunding', 'priorityNeeds', 'systemFlows', 'hybridPublicGoods',
-  'genderConsiderations'
+  'genderConsiderations', 'publicBeneficiaries'
 ];
 
 var SINGLE_VALUE_FIELDS = [
