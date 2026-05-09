@@ -301,6 +301,30 @@ function standaloneLabelize(data) {
     });
   }
 
+  // ---- Benefit traceability — labelize raw sector codes if the row's
+  // sector is one of the 9 known codes (drr/food/health/etc.). The form
+  // does this via DOM lookup, but historical/backfill submissions may
+  // arrive with raw codes that the renderer would otherwise display
+  // as "drr" instead of "Disaster Risk Reduction". Idempotent: already-
+  // labeled values pass through untouched. -----
+  if (Array.isArray(out.benefitTraceability)) {
+    var SECTOR_LABELS = {
+      'drr':         'Disaster Risk Reduction',
+      'food':        'Food Security & Agriculture',
+      'health':      'Health & Wellbeing',
+      'livelihoods': 'Livelihoods & Economy',
+      'education':   'Education & Awareness',
+      'ecosystem':   'Ecosystem Services',
+      'energy':      'Energy & Infrastructure',
+      'governance':  'Governance & Policy',
+      'other':       'Other'
+    };
+    out.benefitTraceability.forEach(function (bt) {
+      var s = String(bt.sector || '').trim().toLowerCase();
+      if (s && SECTOR_LABELS[s]) bt.sector = SECTOR_LABELS[s];
+    });
+  }
+
   // ---- Benefit traceability — populate the empty 'verification' column.
   // The form never captured a per-row verification field, but each outcome
   // metric has a 'how_measured' (outcomeMeasured) describing exactly how
