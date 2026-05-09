@@ -52,7 +52,6 @@ function populatePDFSections(data) {
   setField('regTypeOtherText', data.regTypeOtherText);
   setField('orgCategory', data.orgCategory, true);
   setField('orgCategoryOtherText', data.orgCategoryOtherText);
-  setField('orgCapacity', data.orgCapacity, true);
   setField('dateOfFormation', data.dateOfFormation, true);
 
   // Hide Date of Formation and Registration Number rows when regType is Government or SOE (not applicable)
